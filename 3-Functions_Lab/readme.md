@@ -159,19 +159,19 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
 
 1. Below is the code we will use to insert the events into Cosmos DB
 
-```javascript
-    module.exports = function (context, eventHubMessages) {
-        context.log(`JavaScript eventhub trigger function called for message array ${eventHubMessages}`);
-        var messages = [];
+    ```javascript
+        module.exports = function (context, eventHubMessages) {
+            context.log(`JavaScript eventhub trigger function called for message array ${eventHubMessages}`);
+            var messages = [];
 
-        eventHubMessages.forEach(message => {
-            context.log(`Processed message ${message}`);
-            messages.push(message);
-        });
+            eventHubMessages.forEach(message => {
+                context.log(`Processed message ${message}`);
+                messages.push(message);
+            });
 
-        context.done(null, messages);
-    };
-```
+            context.done(null, messages);
+        };
+    ```
 
 1. Now we can start using it. Click on the function app name
 
@@ -205,7 +205,112 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
     ![app insights live stream](images/app_insights_live_stream_dashboard.png "app insights live stream")
 
 
-## Now let's try this with Event Grid:
+## Now let's do this with Event Grid
 
-1. Create new function with an eventgrid trigger:
-1. Create output for CosmosDB just as we did for Event Hub
+1. Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
+1. Click the New button
+
+    ![New Button](images/new_button.png "New Button")
+
+1. Type "event grid topic" into the search box and select Event Grid Topic when it pops up
+
+    ![Event Grid Topic](images/eventgrid_topic.png "Event Grid Topic")
+
+1. Click "Event Grid"
+
+    ![Event Grid Topic](images/select_eventgrid.png "Event Grid Topic")
+
+1. Then click "Create"
+
+    ![Create](images/create.png "Create")
+
+1. Give it a name, a location, and again let's use the same existing Resource Group as our Function App and Event Hub just to keep everything organized and then click create
+
+    ![Create Event Grid Topic](images/eventgrid_topic_create.png "Create Event Grid Topic")
+
+1. When the deployment finshes, we can create a function that subscripbes to the Event Grid Topic we just created. Click on the "go to resource group" button of the deployment notification
+
+    ![Go to Resource Group](images/goto_resourcegroup.png "Go to Resource Group")
+
+1. Then click on your function app
+
+    ![Function](images/click_function.png "Function")
+
+1. Create a new function by clicking on the plus sign next to the functions section on the left
+
+    ![New Function](images/new_function.png "New Function")
+
+1. type "event grid" in the search box and click on the Javascript link of the "Event Grid trigger"
+
+    ![Event Grid trigger](images/eventgrid_function_template.png "Event Grid trigger")
+
+1. Give your function a name and click "Create"
+
+    ![Create Event Grid trigger](images/create_eventgrid_function_trigger.png "Create Event Grid trigger")
+
+1. Now let's setup the Event Grid subscription. Start by clicking on the "Add Event Grid subscription" link in the uper right-hand corner
+
+    ![Add Event Grid subscription](images/add_eventgrid_subscription.png "Add Event Grid subscription")
+
+1. In the menu that opens. Enter a Name for the subscription, set the Topic Type to "Event Grid Topics," make sure the correct subscription, resource group, and instance of your Event Grid Topic are selected, and click create
+
+    ![Event Grid subscription settings](images/eventgrid_subscription_settings.png "Event Grid subscription settings")
+
+1. Now let's add an output binding for Cosmos DB, just like we did before with the Event Hub. Click the integrate link for your function
+
+    ![Integrate Event Grid Function](images/integrate_eventgrid_function.png "Integrate Event Grid Function")
+
+1. Click the "New Output" button
+
+    ![New Output](images/new_eventgrid_function_output.png "New Output")
+
+1. Select the CosmosDb output and click the Select button.
+
+    ![CosmosDB output](images/function_eventgrid_cosmosdb_output.png "CosmosDB Output")
+
+1. Select the "Use function return value" checkbox. Enter a database name and collection name to use and then check the create database and collection check box then click the new button next to the Cosmos DB account connection. Then click "Save" and we are ready to start writing our code!
+
+    ![CosmosDB output](images/function_eventgrid_cosmosdb_settings.png "CosmosDB Output")
+
+1. Click on the name of your function. and the code window will open
+
+    ![function name](images/function_eventgrid_name.png "function name")
+
+1. Below is the code we will use to insert the events into Cosmos DB
+
+    ```javascript
+    module.exports = function (context, eventGridEvent) {
+        context.log(eventGridEvent.Data);
+        context.done(null, eventGridEvent.Data);
+    };
+    ```
+
+1. Now we can start using it. Click on the function app name
+
+    ![function app](images/function_app.png "function app")
+
+1. Click on the Application Insights link
+
+    ![app insights](images/application_insights.png "app insights")
+
+1. Click the Live Stream button
+
+    ![app insights live stream](images/app_insights_live_stream.png "app insights live stream")
+
+1. In another new window go to [https://aka.ms/eventgen](https://aka.ms/eventgen) in a web browser
+
+1. Select Event Hub as the messaging service
+
+    ![eventgen Event Grid](images/eventgen_eventgrid.png "eventgen Event Grid")
+
+1. Paste in the connection string and event hub name you saved earlier
+
+    ![eventgen Event Grid settings](images/eventgen_eventgrid_settings.png "eventgen Event Grid settings")
+
+1. Choose Ninja Battle, set the duration to 1 minute, set the frequency to whatever you'd like, and click start!
+
+    ![eventgen messages](images/eventgen_messages.png "eventgen messages")
+
+1. Now let's watch the live streaming in Application Insights
+
+    ![app insights live stream](images/app_insights_live_stream_dashboard.png "app insights live stream")
