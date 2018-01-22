@@ -21,14 +21,16 @@ You must have access to either an Azure Subscription or Resource Group that you 
 
 ## Agenda
 
-| From     | To       | Session                            |
-|----------|----------|------------------------------------|
-| 8:30 AM  | 9:00 AM  | Check-in/Introductions             |
-| 9:00 AM  | 9:30 AM  | Azure Functions Education          |
-| 9:30 AM  | 10:20 AM | Azure Functions Instructor-Led Lab |
-| 10:30 AM | 11:00 AM | Azure Logic Apps Overview          |
-| 11:00 AM | 12:00 PM | Azure Logic Instructor-Led Lab     |
-| 12:00 PM | 1:00 PM  | Break                              |
-| 1:00 PM  | 2:00 PM  | Event Grid Demos                   |
-| 2:00 PM  | 4:00 PM  | Architecture Design and Group Code |
-| 4:00 PM  | 4:30 PM  | Wrap Up                            |
+| From     | To       | Session                                     |
+|----------|----------|---------------------------------------------|
+| 8:30 AM  | 9:00 AM  | Check-in                                    |
+| 9:00 AM  | 9:15 AM  | Intros and Overview                         |
+| 9:15 AM  | 9:45 AM  | Azure Functions Overview                    |
+| 9:45 AM  | 10:00 AM | Event Grid Overview                         |
+| 10:00 AM | 10:15 AM | Break                                       |
+| 10:15 AM | 11:15 AM | Functions and Event Grid Instructor-Led Lab |
+| 11:15 AM | 11:45 AM | Azure Logic Apps Overview                   |
+| 11:45 AM | 12:45 PM | Break                                       |
+| 12:45 PM | 1:45 PM  | Azure Logic Instructor-Led Lab              |
+| 1:45 PM  | 3:30 PM  | Group Code Challenge                        |
+| 3:30 PM  | 3:30 PM  | Wrap Up                                     |
