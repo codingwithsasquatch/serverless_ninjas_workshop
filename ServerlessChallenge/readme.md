@@ -11,15 +11,14 @@ The following requirements must be met to complete the challenge:
 
 1) Provide an HTTP endpoint that can be used to place an order.
    * Provide some level of security to avoid anonymous calls to the endpoint
-   * Support only HTTP POST requests
 
 2) After an order is placed, decrement the inventory count. 
 
-3) Notify the partner with an email, that the order has been received. 
+3) Notify the partner, with an email, that the order has been received. 
    * If there is enough inventory to fulfill the order, notify them that it will be shipped within 5 business days.
    * If there is not enough inventory to fulfill the order, notify them that it will be shipped within 10 business days.
    
-4) If the inventory count for a product is low or drops below 5, initiate another process that will restock the product. 
+4) If the inventory count for a product is low, initiate a process that will restock the product. 
 
 The solution can include any combination of Azure Functions, Logic Apps and Event Grid. 
 
@@ -32,6 +31,8 @@ The following APIs are available to support the solution.
    * Example: {{sample url}}
 3) Decrement the product count: {{placeholder url}}
    * Example: {{sample url}}
+4) Get a list of products: {{placeholder url}}
+   * Example: {{sample url}}
 
 ### Suggestions
 * Consider the logical architecture first. Think about the workflow, use cases and requirements before choosing the services and physical architecture for the solution.
@@ -42,3 +43,5 @@ The following APIs are available to support the solution.
 * [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview "Azure Functions")
 * [Logic Apps](https://docs.microsoft.com/en-us/azure/logic-apps/ "Azure Logic Apps")
 * [Event Grid](https://docs.microsoft.com/en-us/azure/event-grid/overview "Azure Event Grid")
+
+![alt text](https://github.com/codingwithsasquatch/serverless_ninjas_workshop/raw/master/ServerlessChallenge/Ninja.jpg "Logo Title Text 1")
