@@ -121,7 +121,7 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
 
 1. Click new for the Event Hub connection
 
-    ![New Event Hub connection](images/choose_function_template.png "New Event Hub connection")
+    ![New Event Hub connection](images/new_event_hub_connection.png "New Event Hub connection")
 
 1. Select the Event Hub you set up in the previous step and "RootManageSharedAccessKey" for the policy. Then click Select
 
