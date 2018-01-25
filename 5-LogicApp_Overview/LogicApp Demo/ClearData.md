@@ -1,4 +1,6 @@
-# Clear Data from CosmosDB
+# Clean Up Demo Environment After Demo
+
+## Clear Data from CosmosDB
 
 This should be done before each demo demo.
 
