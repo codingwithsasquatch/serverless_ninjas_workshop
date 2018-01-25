@@ -1,6 +1,10 @@
 # Serverless Event Streaming Hands-On Lab
 
-## Create Event Hub
+## Event Processing from Event Hub
+
+![Event Hub Diagram](images/eventhub_diagram.png "Event Hub Diagram")
+
+### Create Event Hub
 
 1. Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
 1. Click the New button
@@ -55,7 +59,7 @@
 
     ![SAS Connection String](images/event_hub_connection_string.png "SAS Connection String")
 
-## Create CosmosDB
+### Create CosmosDB
 
 Now that we have an event hub let's create an instance of CosmosDB where we can put these messages.
 
@@ -80,7 +84,7 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
 
     ![Create Cosmos DB](images/create_cosmosdb.png "Create Cosmos DB")
 
-## Create Function
+### Create Function
 
 1. Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
 1. Click the New button
@@ -201,11 +205,11 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
 
 1. Now let's watch the live streaming in Application Insights
 
-
     ![app insights live stream](images/app_insights_live_stream_dashboard.png "app insights live stream")
 
+## Event Processing from Event Grid
 
-## Now let's do this with Event Grid
+![Event Grid Diagram](images/eventgrid_diagram.png "Event Grid Diagram")
 
 1. Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
 1. Click the New button
