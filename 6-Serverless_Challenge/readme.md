@@ -44,4 +44,4 @@ The following APIs are available to support the solution.
 * [Logic Apps](https://docs.microsoft.com/en-us/azure/logic-apps/ "Azure Logic Apps")
 * [Event Grid](https://docs.microsoft.com/en-us/azure/event-grid/overview "Azure Event Grid")
 
-![alt text](https://github.com/codingwithsasquatch/serverless_ninjas_workshop/raw/master/ServerlessChallenge/Ninja.jpg "Logo Title Text 1")
+![alt text](https://github.com/codingwithsasquatch/serverless_ninjas_workshop/raw/master/6-Serverless-Challenge/Ninja.jpg "Serverless Challenge")
