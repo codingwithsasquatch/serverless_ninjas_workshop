@@ -161,7 +161,7 @@ Azure Search is used to show a business process and another endpoint within the 
 
     ![New Data Source](images/data_source_query.png "New Data Source")
 
-1. On the Customer Index blade, give the Index a name, and ensure that the id is selected a a Key.  Select Name and Category as Searchable and press "OK".
+1. On the Customer Index blade, give the Index a name, and ensure that the id is selected a a Key.  Select Name and Category as Searchable and <b>Retrievable</b> and press "OK".
 
     ![New Index](images/customize_index.png "New Index")
 
@@ -179,7 +179,7 @@ Azure Search is used to show a business process and another endpoint within the 
 
     ![New Button](images/new_button.png "New Button")
 
-1. Type "azure functions" into the search box and select Event Hub when it pops up
+1. Type "azure functions" into the search box and select Azure Function when it pops up
 
     ![Function App](images/azure_function_search.png "Function App")
 
@@ -228,3 +228,51 @@ The following steps will rename the function.  Not required, but recommended.
 1. (Optional) Close the console and select the Overview tab.  Select "Restart" and select "OK" in the popup window.
 
     ![Restart Function](images/function_restart.png "Restart Function")
+
+## Create Integration Account
+
+1. Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
+
+1. Click the New button
+
+    ![New Button](images/new_button.png "New Button")
+
+1. Type "integration account" into the search box and select Integration when it pops up
+
+    ![Integration Account](images/integration_account_save.png "Integration Account")
+
+1. On the next blade select Integration account
+
+    ![Integration Account](images/logic_app_integration_account_result.png "Integration Account")
+
+1. Then click "Create"
+
+    ![Create](images/create.png "Create")
+
+1. On the next screen select a  name for your Integration Account (confirm with checkmark), again let's use the same existing Resource Group as our Storage Account just to keep everything organized, select a pricing tier and location. Then click "Create"
+
+    ![Integration Account](images/logic_app_new_integration_account.png "Integration Account")
+
+1. When the deployment finishes, we can start writing our function's code. Click on the "go to resource" button of the deployment notification
+
+    ![Go to Integration Account](images/integration_account_goto.png "Go to Integration Account")
+
+1. When the Integration Account opens, select the Maps tile.
+
+    ![Maps](images/integration_account_maps.png "Maps")
+
+1. In the Maps blade, select Add.
+
+    ![Maps](images/integration_account_add_maps.png "Maps")
+
+1. On the next blade, start by changing the Map type to liquid.
+
+    ![Maps](images/integration_account_map_type.png "Maps")
+
+1. Be sure to create a local copy of the liquid map, [TransformCharacters.liquid](TransformCharacters.liquid)
+
+1. Enter a name and browse to the local copy of the TransformCharacters.liquid file.  The press OK.
+
+    ![Maps](images/integration_account_add_liquid.png "Maps")
+
+The setup steps are now complete.
