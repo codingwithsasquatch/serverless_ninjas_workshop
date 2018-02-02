@@ -10,23 +10,23 @@ The storage account will be used to upload a file to start the Logic App.
 1. Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
 1. Click the New button
 
-    ![New Button](images/New_Button.png "New Button")
+    ![New Button](images/new_button.png "New Button")
 
 1. Type "Azure Blob" into the search box and select Azure Blob when it pops up
 
-    ![Azure Storage](images/Storage_Create.png "Azure Storage")
+    ![Azure Storage](images/storage_create.png "Azure Storage")
 
 1. On the next blade select Storage Account - blob, file, table, queue
 
-    ![Azure Storage](images/Storage_Results.png "Azure Storage")
+    ![Azure Storage](images/storage_results.png "Azure Storage")
 
 1. Then click "Create"
 
-    ![Create](images/Create.png "Create")
+    ![Create](images/create.png "Create")
 
 1. Give it a name, location, resource group, location, and change the Account kind to "Blob storage".  The click Create.
 
-    ![Create Storage](images/Storage_Values_Create.png "Create Storage")
+    ![Create Storage](images/storage_values_create.png "Create Storage")
 
 1. When the deployment finishes, we need to create the blob container in the storage account. Click on the "go to resource" button of the deployment notification
 
