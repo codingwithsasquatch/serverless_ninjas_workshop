@@ -22,7 +22,7 @@ The last step is to call Azure Search.  It is recommended that before starting t
 
     ![Search Key](images/search_key.png "Search Key")
 
-1.  Copy the following code to the text file and change the values to the correct values from Azure Search and Cosmos DB
+1. Copy the following code to the text file and change the values to the correct values from Azure Search and Cosmos DB
 
 ```json
      {
@@ -40,7 +40,6 @@ The last step is to call Azure Search.  It is recommended that before starting t
     }
     }
 ```
-
 
 ## Create Logic App
 
@@ -95,7 +94,7 @@ The last step is to call Azure Search.  It is recommended that before starting t
 
     ![Logic App Trigger](images/logic_app_blob_container.png "Logic App Trigger")
 
-    The Azure Storage Blob trigger just notifies the Logic App that there is a blob that was put in the container.  It does not get the content.  We now need to get the content.  
+    The Azure Storage Blob trigger just notifies the Logic App that there is a blob that was put in the container.  It does not get the content.  We now need to get the content.
 
 1. Select New Step.
 
