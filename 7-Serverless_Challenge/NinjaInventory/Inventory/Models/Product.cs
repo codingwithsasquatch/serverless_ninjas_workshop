@@ -12,8 +12,10 @@ namespace Inventory.Models
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
 
+        [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
 
+        [JsonProperty(PropertyName = "count")]
         public int Count { get; set; }
 
         public override string ToString()
