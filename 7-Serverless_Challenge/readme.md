@@ -11,6 +11,14 @@ The following requirements must be met to complete the challenge:
 
 1) Provide an HTTP endpoint that can be used to place an order.
    * Provide some level of security to avoid anonymous calls to the endpoint
+   * Sample request body:
+   
+         {
+            "id": "2",
+            "count": "2",
+            "customerid": "1000",
+            "email": "customer@contoso.com"
+         }
 
 2) After an order is placed, decrement the inventory count. 
 
