@@ -3,34 +3,75 @@
 Setup:  Create Azure Storage Account, CosmosDB, Azure Search
 This must be completed before giving demo.
 
-## Create a Storage Account
+## Update Deployment template
 
-The storage account will be used to upload a file to start the Logic App.
+1. Open the [template.json](template.json) file in an editor.
+
+1. Search for api-key, and enter the Azure Search primary admin key from the Logic App demo.  Note there are two api-keys.
+
+1. Search for URI and verify the azure search uris for the data source and indexer.
+
+1. Search for the connection string and update the connection string to the CosmoDB connection created in the Logic Apps demo.  Be sure to add the CosmosDB key.
+
+1. Save the template.json file.
+
+## Use template to create Logic App
 
 1. Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
+
 1. Click the New button
 
     ![New Button](images/new_button.png "New Button")
 
-1. Type "Azure Blob" into the search box and select Azure Blob when it pops up
+1. Type "template" into the search box and select Logic App when it pops up
 
-    ![Azure Storage](images/storage_create.png "Azure Storage")
+    ![Template](images/template_search.png "Template")
 
-1. On the next blade select Storage Account - blob, file, table, queue
+1. On the next blade select Template Deployment
 
-    ![Azure Storage](images/storage_results.png "Azure Storage")
+    ![Template Deployment](images/template_deployment_results.png "Template Deployment")
 
 1. Then click "Create"
 
     ![Create](images/create.png "Create")
 
-1. Give it a name, location, resource group, location, and change the Account kind to "Blob storage".  The click Create.
+1. Select "Build your own template in the editor"
 
-    ![Create Storage](images/storage_values_create.png "Create Storage")
+    ![Build Template](images/template_build.png "Build Template")
 
-1. When the deployment finishes, we need to create the blob container in the storage account. Click on the "go to resource" button of the deployment notification
+1. Click "Load file"
 
-    ![Go to Azure Storage](images/goto_storage.png "Go to Azure Storage")
+    ![Build Template](images/template_load_file.png "Build Template")
+
+1. Open the [deployoment.json](deployment.json) file.
+
+    ![Build Template](images/template_json.png "Build Template")
+
+1. Press Save.
+
+    ![Build Template](images/template_save.png "Build Template")
+
+1. Press fill in the values, using the same resource group as the demo.
+
+    ![Build Template](images/template_settings.png "Build Template")
+
+1. Select the terms and agreement check box.
+
+    ![Build Template](images/template_terms.png "Build Template")
+
+1. Select purchase.
+
+    ![Build Template](images/template_purchase.png "Build Template")
+
+1. When the deployment finishes, we need to verify the Logic App. Click on the "go to resource" button of the deployment notification
+
+    ![Build Template](images/template_goto_resource.png "Build Template")
+
+## Create a Storage Account Container
+
+The storage account will be used to upload a file to start the Logic App.
+
+1. When the deployment finishes, we need to create the blob container in the storage account. Open the storage account created in the deployment (does not end in azstorage).
 
 1. Click the Blobs link in the middle of the screen under Services.
 
@@ -52,30 +93,7 @@ The storage account will be used to upload a file to start the Logic App.
 
 Now that we have an storage account let's create an instance of CosmosDB where the messages from the file will be saved.
 
-1. Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
-1. Click the New button
-
-    ![New Button](images/new_button.png "New Button")
-
-1. Type "Azure Cosmos DB" into the search box and select Azure Cosmos DB when it pops up
-
-    ![Azure Cosmos DB](images/cosmos_search.png "Azure Cosmos DB")
-
-1. On the next blade select Azure Cosmos DB
-
-    ![Azure Cosmos DB](images/cosmosdb.png "Azure Cosmos DB")
-
-1. Then click "Create"
-
-    ![Create](images/create.png "Create")
-
-1. Now let's give it a name,  use SQL as the API (since this data is in JSON format already), and use the same existing Resource Group as our Storage Account just to keep everything organized. Then click "Create"
-
-    ![Create Cosmos DB](images/create_cosmosdb.png "Create Cosmos DB")
-
-1. When the deployment finishes, we need to create the DB container. Click on the "go to resource" button of the deployment notification
-
-    ![Go to CosmosDB](images/goto_cosmosdb.png "Go to CosmosDB")
+1. Browse to your resource group and open the Azure Cosmos DB account resource.
 
 1. On the CosmosDB overview page, Click "Add Collection"
 
@@ -101,30 +119,7 @@ Now that we have an storage account let's create an instance of CosmosDB where t
 
 Azure Search is used to show a business process and another endpoint within the Logic App
 
-1. Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
-1. Click the New button
-
-    ![New Button](images/new_button.png "New Button")
-
-1. Type "Azure Search" into the search box and select Azure Search when it pops up
-
-    ![Azure Search](images/azure_search_search.png "Azure Search")
-
-1. On the next blade select Azure Search
-
-    ![Azure Search](images/azure_search.png "Azure Search")
-
-1. Then click "Create"
-
-    ![Create](images/create.png "Create")
-
-1. Give Search Service a URL, location, location, and pricing tier.  Use the same existing Resource Group as our Storage Account just to keep everything organized.  The click "Create".
-
-    ![Create Azure Search](images/new_search_service.png "Create Azure Search")
-
-1. When the deployment finshes, we need to create the index and data source in the search service . Click on the "go to resource" button of the deployment notification
-
-    ![Go to Azure Search](images/search_deployment.png "Go to Azure Search")
+1. We need to create the index and data source in the search service.  Browse to your resource group and open the Search service resource.
 
 1. Click the "Import Data" button at the top of the page.
 
@@ -169,31 +164,7 @@ Azure Search is used to show a business process and another endpoint within the 
 
 ## Create Function
 
-1. Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
-
-1. Click the New button
-
-    ![New Button](images/new_button.png "New Button")
-
-1. Type "azure functions" into the search box and select Azure Function when it pops up
-
-    ![Function App](images/azure_function_search.png "Function App")
-
-1. On the next blade select Function App
-
-    ![Function App](images/function_search_result.png "Function App")
-
-1. Then click "Create"
-
-    ![Create](images/create.png "Create")
-
-1. On the next screen select a unique name for your function app (confirm with checkmark), again let's use the same existing Resource Group as our Storage Account just to keep everything organized, keep consumption plan selected for the hosting plan then click "Create"
-
-    ![Create Function](images/create_function.png "Create Function")
-
-1. When the deployment finishes, we can start writing our function's code. Click on the "go to resource" button of the deployment notification
-
-    ![Go to Function](images/goto_function.png "Go to Function")
+1. We need to create the function in the function app.  Browse to your resource group and open the App Service resource.
 
 1. Create a new function by clicking on the plus sign next to the functions section on the left
 
