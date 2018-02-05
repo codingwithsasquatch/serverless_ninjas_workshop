@@ -25,17 +25,29 @@ The solution can include any combination of Azure Functions, Logic Apps and Even
 ###  APIs
 The following APIs are available to support the solution. 
 
-1) Get details about a product (name and inventory count): {{placeholder  url}}
-   * Example: {{sample url}}
-2) Restock a product: {{placeholder url}}
-   * Example: {{sample url}}
-3) Decrement the product count: {{placeholder url}}
-   * Example: {{sample url}}
-4) Get a list of products: {{placeholder url}}
-   * Example: {{sample url}}
+1) Get details about a product (name and inventory count): 
+   * URL: https://ninjachallenge.azurewebsites.net/api/details/{id}
+   * Example: https://ninjachallenge.azurewebsites.net/api/details/2
+   * CURL: curl --header "x-functions-key: {api-key}" https://ninjachallenge.azurewebsites.net/api/details/2
+   
+2) Restock a product: 
+   * POST https://ninjachallenge.azurewebsites.net/api/add/{id}/{count}
+   * Example: https://ninjachallenge.azurewebsites.net/api/add/1/10
+   * CURL: curl -d "" -H "x-functions-key: {api-key}" -X POST https://ninjachallenge.azurewebsites.net/api/add/1/10
+   
+3) Decrement the product count: 
+   * POST https://ninjachallenge.azurewebsites.net/api/remove/{id}/{count}
+   * Example: https://ninjachallenge.azurewebsites.net/api/remove/1/10
+   * CURL: curl -d "" -H "x-functions-key: {api-key}" -X POST https://ninjachallenge.azurewebsites.net/api/remove/1/10
+   
+4) Get a list of products: 
+   * GET https://ninjachallenge.azurewebsites.net/api/details/{id}
+   * Example: https://ninjachallenge.azurewebsites.net/api/details/2
+   * CURL: curl --header "x-functions-key: {api-key}" https://ninjachallenge.azurewebsites.net/api/details/2
 
 ### Suggestions
-* Consider the logical architecture first. Think about the workflow, use cases and requirements before choosing the services and physical architecture for the solution.
+* Consider the logical architecture first. 
+* Think about the workflow, use cases and requirements before choosing the services and physical architecture for the solution.
 * Leverage the strengths of each service.
 * Use the provided APIs to manage the product inventory.
 
@@ -44,4 +56,4 @@ The following APIs are available to support the solution.
 * [Logic Apps](https://docs.microsoft.com/en-us/azure/logic-apps/ "Azure Logic Apps")
 * [Event Grid](https://docs.microsoft.com/en-us/azure/event-grid/overview "Azure Event Grid")
 
-![alt text](https://github.com/codingwithsasquatch/serverless_ninjas_workshop/raw/master/6-Serverless-Challenge/Ninja.jpg "Serverless Challenge")
+![alt text](https://github.com/codingwithsasquatch/serverless_ninjas_workshop/raw/master/7-Serverless_Challenge/Ninja.jpg "Serverless Challenge")
