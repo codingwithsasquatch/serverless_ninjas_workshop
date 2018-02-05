@@ -5,7 +5,7 @@ This must be completed before giving demo.
 
 ## Update Deployment template
 
-1. Open the [template.json](template.json) file in an editor.
+1. Open the [deployment.json](deployment.json) file in an editor.
 
 1. Search for api-key, and enter the Azure Search primary admin key from the Logic App demo.  Note there are two api-keys.
 
