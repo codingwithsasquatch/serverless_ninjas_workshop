@@ -15,7 +15,7 @@ The following requirements must be met to complete the challenge:
    
          {
             "id": "2",
-            "count": "2",
+            "count": 2,
             "customerid": "1000",
             "email": "customer@contoso.com"
          }
