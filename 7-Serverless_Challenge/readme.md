@@ -25,6 +25,8 @@ The solution can include any combination of Azure Functions, Logic Apps and Even
 ###  APIs
 The following APIs are available to support the solution. 
 
+Note: The API Key will be provided at the time of the exercise.
+
 1) Get details about a product (name and inventory count): 
    * URL: https://ninjachallenge.azurewebsites.net/api/details/{id}
    * Example: https://ninjachallenge.azurewebsites.net/api/details/2
