@@ -2,43 +2,28 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "databaseAccountName": {
+        "labPrefix": {
             "type": "string",
             "metadata": {
-              "description": "The DocumentDB database account name."
+                "description": "prefix used for resources in this lab. (use all lovercase and numeric)"
             }
-          },
-        "functionName": {
-            "type": "string",
-            "metadata": {
-                "description": "Name of the function app"
-              }
-        },
-        "searchServicesname": {
-            "type": "string",
-            "metadata": {
-                "description": "Service name must only contain lowercase letters, digits or dashes, cannot use dash as the first two or last one characters, cannot contain consecutive dashes, and is limited between 2 and 60 characters in length."
-              }
-        },
-        
-        "storageAccountFileUpload": {
-            "type": "string",
-            "metadata": {
-                "description": "Blob Storage account to upload files."
-              }
         }
     },
     "variables": {
         "config_web_name": "web",
-        "hostNameBindings": "[concat(parameters('functionName'), 'azurewebsites.net')]",
-        "storageAccountFunction": "[concat(parameters('functionName'), 'azstorage')]",
-        "serverfarmName": "[concat(parameters('functionName'), 'azfarm')]"
+        "labUid": "[take(uniquestring(resourceGroup().id),5)]",
+        "docDbName": "[concat(parameters('labPrefix'),'docdb',variables('labUid'))]",
+        "searchServiceName": "[concat(parameters('labPrefix'),'search',variables('labUid'))]",
+        "functionName": "[concat(parameters('labPrefix'),'func',variables('labUid'))]",
+        "storageName": "[concat(parameters('labPrefix'),'sa',variables('labUid'))]",
+        "funcStorageName": "[concat(parameters('labPrefix'),'fnsa',variables('labUid'))]",
+        "serverfarmName": "[concat(parameters('labPrefix'),'serverfarm',variables('labUid'))]"
     },
     "resources": [
         {
             "type": "Microsoft.DocumentDB/databaseAccounts",
             "kind": "GlobalDocumentDB",
-            "name": "[parameters('databaseAccountName')]",
+            "name": "[variables('docDbName')]",
             "apiVersion": "2015-04-08",
             "location": "[resourceGroup().location]",
             "tags": {
@@ -52,16 +37,16 @@
                     "maxIntervalInSeconds": 5,
                     "maxStalenessPrefix": 100
                 },
-                "name": "[parameters('databaseAccountName')]"
+                "name": "[variables('docDbName')]"
             },
             "dependsOn": []
         },
         {
-             "type": "Microsoft.Search/searchServices",
+            "type": "Microsoft.Search/searchServices",
             "sku": {
                 "name": "basic"
             },
-            "name": "[parameters('searchServicesname')]",
+            "name": "[variables('searchServiceName')]",
             "apiVersion": "2015-08-19",
             "location": "[resourceGroup().location]",
             "scale": null,
@@ -79,7 +64,7 @@
                 "tier": "Standard"
             },
             "kind": "BlobStorage",
-            "name": "[parameters('storageAccountFileUpload')]",
+            "name": "[variables('storageName')]",
             "apiVersion": "2017-06-01",
             "location": "[resourceGroup().location]",
             "tags": {},
@@ -114,7 +99,7 @@
                 "tier": "Standard"
             },
             "kind": "Storage",
-            "name": "[variables('storageAccountFunction')]",
+            "name": "[variables('funcStorageName')]",
             "apiVersion": "2017-06-01",
             "location": "[resourceGroup().location]",
             "tags": {},
@@ -169,15 +154,14 @@
         {
             "type": "Microsoft.Web/sites",
             "kind": "functionapp",
-            "name": "[parameters('functionName')]",
+            "name": "[variables('functionName')]",
             "apiVersion": "2016-08-01",
             "location": "[resourceGroup().location]",
             "scale": null,
             "properties": {
                 "enabled": true,
-                "hostNameSslStates": [
-                    {
-                        "name": "[concat(parameters('functionName'),'.azurewebsites.net')]",
+                "hostNameSslStates": [{
+                        "name": "[concat(variables('functionName'),'.azurewebsites.net')]",
                         "sslState": "Disabled",
                         "virtualIP": null,
                         "thumbprint": null,
@@ -185,7 +169,7 @@
                         "hostType": "Standard"
                     },
                     {
-                        "name": "[concat(parameters('functionName'),'.scm.azurewebsites.net')]",
+                        "name": "[concat(variables('functionName'),'.scm.azurewebsites.net')]",
                         "sslState": "Disabled",
                         "virtualIP": null,
                         "thumbprint": null,
@@ -211,7 +195,7 @@
         },
         {
             "type": "Microsoft.Web/sites/config",
-            "name": "[concat(parameters('functionName'), '/', variables('config_web_name'))]",
+            "name": "[concat(variables('functionName'), '/', variables('config_web_name'))]",
             "apiVersion": "2016-08-01",
             "location": "[resourceGroup().location]",
             "scale": null,
@@ -255,14 +239,12 @@
                 "javaContainerVersion": null,
                 "appCommandLine": "",
                 "managedPipelineMode": "Integrated",
-                "virtualApplications": [
-                    {
-                        "virtualPath": "/",
-                        "physicalPath": "site\\wwwroot",
-                        "preloadEnabled": false,
-                        "virtualDirectories": null
-                    }
-                ],
+                "virtualApplications": [{
+                    "virtualPath": "/",
+                    "physicalPath": "site\\wwwroot",
+                    "preloadEnabled": false,
+                    "virtualDirectories": null
+                }],
                 "winAuthAdminState": 0,
                 "winAuthTenantState": 0,
                 "customAppPoolIdentityAdminState": false,
@@ -319,7 +301,7 @@
                 "ipSecurityRestrictions": null
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('functionName'))]"
+                "[resourceId('Microsoft.Web/sites', variables('functionName'))]"
             ]
         }
     ]
