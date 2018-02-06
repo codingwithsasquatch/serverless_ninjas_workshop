@@ -45,7 +45,7 @@ This must be completed before giving demo.
 
     ![Build Template](images/template_save.png "Build Template")
 
-1. Press fill in the values, using the same resource group as the demo.
+1. Fill in the values, giving the resource group a name and location, and prefix name for the resource that will be created in it.
 
     ![Build Template](images/template_settings.png "Build Template")
 
@@ -105,7 +105,7 @@ Now that we have an storage account let's create an instance of CosmosDB where t
 
     ![Add Document](images/new_document_setup.png "Add Document")
 
-1. Copy the code from [setupdata.json](setupdata.json) and paste the json into the editor.  Then press "Save".
+1. Copy the code from [setupdata.json](setup_data/setupdata.json) and paste the json into the editor.  Then press "Save".
 
     ![Add Document](images/setup_document_code.png "Add Document")
 
