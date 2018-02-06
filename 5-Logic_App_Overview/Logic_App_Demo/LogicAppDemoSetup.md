@@ -7,13 +7,7 @@ This must be completed before giving demo.
 
 1. Open the [deployment.json](deployment.json) file in an editor.
 
-1. Search for api-key, and enter the Azure Search primary admin key from the Logic App demo.  Note there are two api-keys.
-
-1. Search for URI and verify the azure search uris for the data source and indexer.
-
-1. Search for the connection string and update the connection string to the CosmoDB connection created in the Logic Apps demo.  Be sure to add the CosmosDB key.
-
-1. Save the template.json file.
+1. Save the deployment.json file to a local folder directory.
 
 ## Use template to create Logic App
 
