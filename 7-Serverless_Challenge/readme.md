@@ -28,36 +28,42 @@ The following requirements must be met to complete the challenge:
    
 4) If the inventory count for a product is low, initiate a process that will restock the product. 
 
-The solution can include any combination of Azure Functions, Logic Apps and Event Grid. 
+The solution can include any combination of Azure Functions, Logic Apps and Event Grid. Other services, such as Storage, might be included in order to complete the challenge. 
 
 ###  APIs
-The following APIs are available to support the solution. 
-
-Note: The API Key will be provided at the time of the exercise.
+A collection of APIs are provided to support the solution. Authorization is handled with an API key that can be passed into the header of each request. The proctor or instructor will provide the key at the time of the exercise.
 
 1) Get details about a product (name and inventory count): 
+   * Method: GET
+   * Headers: x-functions-key
    * URL: https://ninjachallenge.azurewebsites.net/api/details/{id}
    * Example: https://ninjachallenge.azurewebsites.net/api/details/2
    * CURL: curl --header "x-functions-key: {api-key}" https://ninjachallenge.azurewebsites.net/api/details/2
    
 2) Restock a product: 
-   * POST https://ninjachallenge.azurewebsites.net/api/add/{id}/{count}
+   * Method: POST
+   * Headers: x-functions-key
+   * URL: https://ninjachallenge.azurewebsites.net/api/add/{id}/{count}
    * Example: https://ninjachallenge.azurewebsites.net/api/add/1/10
    * CURL: curl -d "" -H "x-functions-key: {api-key}" -X POST https://ninjachallenge.azurewebsites.net/api/add/1/10
    
 3) Decrement the product count: 
-   * POST https://ninjachallenge.azurewebsites.net/api/remove/{id}/{count}
+   * Method: POST
+   * Headers: x-functions-key
+   * URL: https://ninjachallenge.azurewebsites.net/api/remove/{id}/{count}
    * Example: https://ninjachallenge.azurewebsites.net/api/remove/1/10
    * CURL: curl -d "" -H "x-functions-key: {api-key}" -X POST https://ninjachallenge.azurewebsites.net/api/remove/1/10
    
 4) Get a list of products: 
-   * GET https://ninjachallenge.azurewebsites.net/api/details/{id}
+   * Method: GET
+   * URL: https://ninjachallenge.azurewebsites.net/api/details/{id}
+   * Headers: x-functions-key
    * Example: https://ninjachallenge.azurewebsites.net/api/details/2
    * CURL: curl --header "x-functions-key: {api-key}" https://ninjachallenge.azurewebsites.net/api/details/2
 
 ### Suggestions
 * Consider the logical architecture first. 
-* Think about the workflow, use cases and requirements before choosing the services and physical architecture for the solution.
+* Review the use cases and requirements before services and physical design of the solution.
 * Leverage the strengths of each service.
 * Use the provided APIs to manage the product inventory.
 
