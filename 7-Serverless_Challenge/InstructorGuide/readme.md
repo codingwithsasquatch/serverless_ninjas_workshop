@@ -1,7 +1,26 @@
 # Serverless Ninjas Challenge - Instructor Guide
 
-### Overview
-A set of services have been provisioned to support this challenge:
+This guide provides a reference for the proctors and instructors of the [Serverless Challenge](https://github.com/codingwithsasquatch/serverless_ninjas_workshop/tree/master/7-Serverless_Challenge). 
+
+It is recommended that the attendees of the workshop break up into teams to collaborate on the solution. Each team will require access to a resource group with the Contributor role.
+
+----
+## Directions
+
+1. Refer attendees to the [Serverless Challenge](https://github.com/codingwithsasquatch/serverless_ninjas_workshop/tree/master/7-Serverless_Challenge). Walk through the requirements and address any questions.
+
+2. Provide the necessary key for the API calls.
+
+3. Demonstrate how to retrieve the list of products using Postman, Fiddler, cURL or your tool of choice. Highlight the API key in the header and how to apply it. Examples:
+
+       URL: GET https://ninjachallenge.azurewebsites.net/api/list
+       CURL: curl --header "x-functions-key: {api-key}" https://ninjachallenge.azurewebsites.net/api/list
+
+4. Recommend a designated product from the service for each team to work with.
+
+----
+## Resources
+The following services have been provisioned to support the challenge:
 
 * CosmosDB database
   * Endpoint: https://ninjachallenge.documents.azure.com:443/
@@ -16,24 +35,27 @@ A set of services have been provisioned to support this challenge:
   * Details - Gets the details for a product by ID (https://ninjachallenge.azurewebsites.net/api/details/{id})
   * List - Gets all products (https://ninjachallenge.azurewebsites.net/api/list)
 
-### Source Code
+Attendees do not need to make any changes to the services, they will just call the APIs to work with the inventory of products.
+
+Postman collection for proctors and instructors:
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/963b0f878b26ef54e7e2)
+
+----
+## Source Code
 The source code for the Functions can be found at: https://github.com/codingwithsasquatch/serverless_ninjas_workshop/tree/master/7-Serverless_Challenge/NinjaInventory.
 
-### Tools
-It would be helpful, but not necessary, if the participants can test the APIs with one of the following tools:
+Application settings required for the Function App:
+
+| Setting                 | Value                       | 
+| ------------------------|:----------------------------| 
+| DocumentDbAuthKey       | {CosmosDB Read-Write Key}   | 
+| DocumentDbCollectionId  | products                    | 
+| DocumentDbEndpoint      | {CosmosDB Endpoint}         | 
+| DocumentDbDatabaseId    | inventory                   | 
+
+----
+## Recommended Tools
 * Postman
 * cURL
 * Fiddler
-
-### Guidelines
-Some guidelines for the challenge include:
-* Retrieve the list of products and assign each team a designed ID to work with for the challenge.
-* Demonstrate how to call the APIs
-* Provide the participants with the API key (header name is called-out in the challenge: x-functions-key).
-
-### Sample Solution
-
-
-### Resources
-Postman Collection of requests:
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/963b0f878b26ef54e7e2)
