@@ -16,7 +16,7 @@ This demo uses the Azure Storage Explorer [https://azure.microsoft.com/en-us/fea
 
 ## Save data in a text editor
 
-The last step is to call Azure Search.  It is recommended that before starting the demo the following item is saved to a text file to be easily retrieved.
+The last step is to call Azure Search.  It is recommended that before starting the demo the Search service Primary Admin Key is saved to a text file to be easily retrieved.
 
 1. Open your Azure Search instance and select Keys.  Copy the Primary Admin Key to the text file.
 
@@ -25,20 +25,20 @@ The last step is to call Azure Search.  It is recommended that before starting t
 1. Copy the following code to the text file and change the values to the correct values from Azure Search and Cosmos DB
 
 ```json
-     {
-   "container": {
-    "name": "<Cosmos SQL API collection>"
-     },
+{
+    "container": {
+        "name": "<Cosmos SQL API collection>"
+    },
     "credentials": {
-    "connectionString": "AccountEndpoint=https://[your account name].documents.azure.com;AccountKey=[your cosmos db primary account key];Database=[your database id]"
+        "connectionString": "AccountEndpoint=https://[your account name].documents.azure.com;AccountKey=[your cosmos db primary account key];Database=[your database id]"
     },
     "name": "<Search Data Source>",
     "type": "documentdb",
-      "dataChangeDetectionPolicy" :
-      {"@odata.type" : "#Microsoft.Azure.Search.HighWaterMarkChangeDetectionPolicy",  
-    "highWaterMarkColumnName" : "_ts"
+    "dataChangeDetectionPolicy": {
+        "@odata.type": "#Microsoft.Azure.Search.HighWaterMarkChangeDetectionPolicy",
+        "highWaterMarkColumnName": "_ts"
     }
-    }
+}
 ```
 
 ## Create Logic App
