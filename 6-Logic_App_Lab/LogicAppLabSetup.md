@@ -6,15 +6,11 @@ The following will setup the Logic App that the student will send messages to in
 
 1. Open the [template.json](template.json) file in an editor.
 
-1. Search for api-key, and enter the Azure Search primary admin key from the Logic App demo.  Note there are two api-keys.
-
-1. Search for URI and verify the azure search uris for the data source and indexer.
-
 1. Search for the connection string and update the connection string to the CosmoDB connection created in the Logic Apps demo.  Be sure to add the CosmosDB key.
 
 1. Save the template.json file.
 
-## Use template to create Logic App
+## Use template to create Logic App and API Management
 
 1. Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
 
@@ -62,39 +58,17 @@ The following will setup the Logic App that the student will send messages to in
 
     ![Build Template](images/template_purchase.png "Build Template")
 
+    Note:  API Management can take several minutes to create.
+
 1. When the deployment finishes, we need to verify the Logic App. Click on the "go to resource" button of the deployment notification
 
     ![Go to Logic App](images/template_goto_deployment.png "Go to Logic App")
 
-1. Ensure all values are entered in the CosmosDB action item and the Data Source and Indexer actions.
+1. Ensure all values are entered in the CosmosDB action item.
 
-## Create API Management
+## Create API in API Management
 
-1. Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
-
-1. Click the New button
-
-    ![New Button](images/new_button.png "New Button")
-
-1. Type "api management" into the search box and select API Management when it pops up
-
-    ![API Management](images/api_management_search.png "API Management")
-
-1. On the next blade select API Management
-
-    ![API Management](images/api_management_result.png "API Management")
-
-1. Then click "Create"
-
-    ![Create](images/Create.png "Create")
-
-1. Then click Enter the name, the existing resource group, and organization name, and select a pricing tier.
-
-    ![API Management](images/api_management_details.png "API Management")
-
-1. Then click "Create"
-
-    ![Create](images/create.png "Create")
+1. Browse to the API Management resource.
 
 Note:  API Management can take several minutes to create.
 

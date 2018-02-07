@@ -1,4 +1,4 @@
-# Serverless Logic Apps Lab 
+# Serverless Logic Apps Lab
 
 In this lab, students will create a logic app that sends a single json message of a character of the user's choosing.
 
@@ -223,4 +223,4 @@ Compose is a common action used to create a new message that can be used in the 
 
     ![Run Logic App](images/logic_app_finished.png "Run Logic App")
 
-At this point the instructure can open Azure search and search for the student's character.
+At this point the instructure can open Azure Cosmos DB and search for the students character.
