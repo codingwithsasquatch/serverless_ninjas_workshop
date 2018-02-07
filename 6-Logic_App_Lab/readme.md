@@ -1,10 +1,14 @@
-# Serverless Logic Apps Lab
+# Serverless Logic Apps Hands On Lab
 
-In this lab, students will create a logic app that sends a single json message of a character of the user's choosing.
+In this lab, students will create a logic app that sends a single json message of a character of the student's choosing.
 
-The logic app searches through CosmosDB to determine if the character already exists and then send the message to another Logic App using HTTP.  The message is then saved into CosmosDB and a response is returned to the student.
+The logic app searches through CosmosDB to determine if the character already exists and if not sends the message to another Logic App using HTTP.  The message is then saved into CosmosDB and a response is returned to the student.
 
-We wrap up the lab by searching for a user's character in Azure search.
+We wrap up the lab by searching for a user's character in Cosmos DB.
+
+<b>This Lab builds on the Logic App Demo.  Before you start the lab you must create the API Management and SingleCharacerProcess Logic App found in the walk-through [Logic App Lab Setup](LogicAppLabSetup.md).</b>
+
+![Logic App Diagram](images/Logic_App_Diagram.png "Logic App Diagram")
 
 ## Create Logic App
 
