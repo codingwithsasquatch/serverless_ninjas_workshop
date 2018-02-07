@@ -6,8 +6,6 @@ The following will setup the Logic App that the student will send messages to in
 
 1. Open the [template.json](template.json) file in an editor.
 
-1. Search for the connection string and update the connection string to the CosmoDB connection created in the Logic Apps demo.  Be sure to add the CosmosDB key.
-
 1. Save the template.json file.
 
 ## Use template to create Logic App and API Management
