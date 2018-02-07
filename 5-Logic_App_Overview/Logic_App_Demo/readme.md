@@ -8,11 +8,6 @@ Once uploaded, each character is then saved as documents in a CosmosDB database,
 
 ![Logic App Diagram](images/logic_app_overview.png "Logic App Diagram")
 
-The following steps must be taken.  Click each link to view the walkthrough:
-
-1. [Logic App Demo Setup](LogicAppDemoSetup.md)
-1. [Clear Data](ClearData.md)
-
 <b>You must go through [Logic App Demo Setup](LogicAppDemoSetup.md) at least once before the following demo will work .  If reusing the same CosmosDB from a previous run of the demo, it is recommended to walk-thorugh [Clear Data](ClearData.md) to avoid errors</b>
 
 ## Azure Storage Explorer
