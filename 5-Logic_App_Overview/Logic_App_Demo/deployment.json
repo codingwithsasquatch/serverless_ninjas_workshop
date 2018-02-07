@@ -4,6 +4,7 @@
     "parameters": {
         "labPrefix": {
             "type": "string",
+            "defaultValue": "ninjaupload",
             "metadata": {
                 "description": "prefix used for resources in this lab. (use all lovercase and numeric)"
             }
@@ -12,18 +13,16 @@
     "variables": {
         "config_web_name": "web",
         "labUid": "[take(uniquestring(resourceGroup().id),5)]",
-        "docDbName": "[concat(parameters('labPrefix'),'docdb',variables('labUid'))]",
-        "searchServiceName": "[concat(parameters('labPrefix'),'search',variables('labUid'))]",
-        "functionName": "[concat(parameters('labPrefix'),'func',variables('labUid'))]",
-        "storageName": "[concat(parameters('labPrefix'),'sa',variables('labUid'))]",
-        "funcStorageName": "[concat(parameters('labPrefix'),'fnsa',variables('labUid'))]",
+        "cosmosDbName": "[concat(parameters('labPrefix'),'cosmosdb',variables('labUid'))]",
+        "functionName": "[concat(parameters('labPrefix'),'function',variables('labUid'))]",
+        "storageName": "[concat(parameters('labPrefix'),'storage',variables('labUid'))]",
         "serverfarmName": "[concat(parameters('labPrefix'),'serverfarm',variables('labUid'))]"
     },
     "resources": [
         {
             "type": "Microsoft.DocumentDB/databaseAccounts",
             "kind": "GlobalDocumentDB",
-            "name": "[variables('docDbName')]",
+            "name": "[variables('cosmosDbName')]",
             "apiVersion": "2015-04-08",
             "location": "[resourceGroup().location]",
             "tags": {
@@ -37,23 +36,7 @@
                     "maxIntervalInSeconds": 5,
                     "maxStalenessPrefix": 100
                 },
-                "name": "[variables('docDbName')]"
-            },
-            "dependsOn": []
-        },
-        {
-            "type": "Microsoft.Search/searchServices",
-            "sku": {
-                "name": "basic"
-            },
-            "name": "[variables('searchServiceName')]",
-            "apiVersion": "2015-08-19",
-            "location": "[resourceGroup().location]",
-            "scale": null,
-            "properties": {
-                "replicaCount": 1,
-                "partitionCount": 1,
-                "hostingMode": "Default"
+                "name": "[variables('cosmosDbName')]"
             },
             "dependsOn": []
         },
@@ -89,39 +72,6 @@
                     "keySource": "Microsoft.Storage"
                 },
                 "accessTier": "Hot"
-            },
-            "dependsOn": []
-        },
-        {
-            "type": "Microsoft.Storage/storageAccounts",
-            "sku": {
-                "name": "Standard_LRS",
-                "tier": "Standard"
-            },
-            "kind": "Storage",
-            "name": "[variables('funcStorageName')]",
-            "apiVersion": "2017-06-01",
-            "location": "[resourceGroup().location]",
-            "tags": {},
-            "scale": null,
-            "properties": {
-                "networkAcls": {
-                    "bypass": "AzureServices",
-                    "virtualNetworkRules": [],
-                    "ipRules": [],
-                    "defaultAction": "Allow"
-                },
-                "encryption": {
-                    "services": {
-                        "file": {
-                            "enabled": true
-                        },
-                        "blob": {
-                            "enabled": true
-                        }
-                    },
-                    "keySource": "Microsoft.Storage"
-                }
             },
             "dependsOn": []
         },

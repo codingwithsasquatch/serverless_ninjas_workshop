@@ -9,7 +9,7 @@ This must be completed before giving demo.
 
 1. Save the deployment.json file to a local folder directory.
 
-## Use template to create Logic App
+## Use template to create Storage, Cosmos DB, and Azure Function
 
 1. Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
 
@@ -45,13 +45,9 @@ This must be completed before giving demo.
 
     ![Build Template](images/template_save.png "Build Template")
 
-1. Fill in the values, giving the resource group a name and location, and prefix name for the resource that will be created in it.
+1. Fill in the values, giving the resource group a name and location, and prefix name for the resource that will be created in it.  1. Select the terms and agreement check box.
 
     ![Build Template](images/template_settings.png "Build Template")
-
-1. Select the terms and agreement check box.
-
-    ![Build Template](images/template_terms.png "Build Template")
 
 1. Select purchase.
 
@@ -65,7 +61,7 @@ This must be completed before giving demo.
 
 The storage account will be used to upload a file to start the Logic App.
 
-1. When the deployment finishes, we need to create the blob container in the storage account. Open the storage account created in the deployment (does not end in azstorage).
+1. When the deployment finishes, we need to create the blob container in the storage account. Open the storage account created in the deployment.
 
 1. Click the Blobs link in the middle of the screen under Services.
 
@@ -83,7 +79,7 @@ The storage account will be used to upload a file to start the Logic App.
 
     The demo walkthrough does use the Azure Storage Explorer, though the file can be uploaded through the portal.
 
-## Create CosmosDB
+## Create CosmosDB Collection
 
 Now that we have an storage account let's create an instance of CosmosDB where the messages from the file will be saved.
 
@@ -97,65 +93,6 @@ Now that we have an storage account let's create an instance of CosmosDB where t
 
     ![Add Collection](images/new_collection.png "Add Collection")
 
-1. Once the collection is created, a document needs to be added in order to create the index for the Azure Search.  On the Data Explorer page, select the database name->collection name-Documents.
-
-    ![Add Document](images/add_document_collection.png "Add Document")
-
-1. On the right, select Add Document.
-
-    ![Add Document](images/new_document_setup.png "Add Document")
-
-1. Copy the code from [setupdata.json](setup_data/setupdata.json) and paste the json into the editor.  Then press "Save".
-
-    ![Add Document](images/setup_document_code.png "Add Document")
-
-## Create Azure Search
-
-Azure Search is used to show a business process and another endpoint within the Logic App
-
-1. We need to create the index and data source in the search service.  Browse to your resource group and open the Search service resource.
-
-1. Click the "Import Data" button at the top of the page.
-
-    ![Import Data](images/import_data_button.png "Import Data")
-
-1. On the Import Data blade, select Connect to your Data
-
-    ![New Data Source](images/data_source_create.png "New Data Source")
-
-1. On the Data Source blade, select DocumentDB
-
-    ![New Data Source](images/docdb_data_source.png "New Data Source")
-
-1. On the New Data Source blade, give it a name and select DocumentDB account
-
-    ![New Data Source](images/new_data_source.png "New Data Source")
-
-1. Select your CosmosDB account, then select the database and collection name.
-
-    ![New Data Source](images/data_source_values.png "New Data Source")
-
-1. Enter the following value into the Query box:
-
-    ```SQL
-    SELECT c.id, c.name, c.Attributes, c.Attributes.Category, c._ts
-    FROM c where c._ts >= @HighWaterMark
-    ```
-
-    Then select "Query results by _ts" check box.  The press "OK".
-
-    ![New Data Source](images/data_source_query.png "New Data Source")
-
-1. On the Customer Index blade, give the Index a name, and ensure that the id is selected a a Key.  Select Name and Category as Searchable and <b>Retrievable</b> (not shown below) and press "OK".
-
-    ![New Index](images/customize_index.png "New Index")
-
-1. On the Create an Indexer Blade, give the Indexer a name and leave the Schedule to Once.  Press "OK".
-
-    ![New Indexer](images/create_indexer.png "New Indexer")
-
-1. Press "OK" on the Import Data blade.
-
 ## Create Function
 
 1. We need to create the function in the function app.  Browse to your resource group and open the App Service resource.
@@ -164,31 +101,21 @@ Azure Search is used to show a business process and another endpoint within the 
 
     ![New Function](images/new_function.png "New Function")
 
-1. Then click the link that says "Create this function".
+1. Then click the link that says "Create your own function".
 
-    ![Create HTTP Function](images/create_web_function.png "Create HTTP Function")
+    ![Create HTTP Function](images/create_your_own_function.png "Create HTTP Function")
+
+1. Select the C# value in the HTTP Trigger tile.
+
+    ![Create HTTP Function](images/function_http_trigger.png "Create HTTP Function")
+
+1. The the HTTP Trigger blade, enter a name for the funtion and press Create.
+
+    ![Create HTTP Function](images/function_properties.png "Create HTTP Function")
 
 1. Copy the code from [attributemapfunction.txt](setup_data/attributemapfunction.txt) into the run.csx editor.  Press Save.
 
     ![Add Function Code](images/function_code.png "Add Function Code")
-
-The following steps will rename the function.  Not required, but recommended.
-
-1. (Optional) Select the unique name of your function app.
-
-     ![Rename Function](images/function_rename_select.png "Rename Function")
-
-1. (Optional) Select "Platform Features", then under Development Tools click Console.
-
-    ![Rename Function](images/function_platform_features.png "Rename Function")
-
-1. (Optional) In the Console, type:  rename HttpTriggerCSharp1 \<your name\> where <your name> is the new name of the function.
-
-    ![Rename Function](images/rename_console.png "Rename Function")
-
-1. (Optional) Close the console and select the Overview tab.  Select "Restart" and select "OK" in the popup window.
-
-    ![Restart Function](images/function_restart.png "Restart Function")
 
 ## Create Integration Account
 
