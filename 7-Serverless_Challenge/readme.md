@@ -12,7 +12,6 @@ The following requirements must be met to complete the challenge:
 
 1) Provide an HTTP endpoint that can be used to place an order.
 
-   * Provide some level of security to avoid anonymous calls to the endpoint
    * Sample request body:
 
          {
