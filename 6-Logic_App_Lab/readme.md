@@ -6,9 +6,15 @@ The logic app searches through CosmosDB to determine if the character already ex
 
 We wrap up the lab by searching for a user's character in Cosmos DB.
 
+![Logic App Diagram](images/Logic_App_Diagram.png "Logic App Diagram")
+
 <b>This Lab builds on the Logic App Demo.  Before you start the lab you must create the API Management and SingleCharacerProcess Logic App found in the walk-through [Logic App Lab Setup](LogicAppLabSetup.md).</b>
 
-![Logic App Diagram](images/Logic_App_Diagram.png "Logic App Diagram")
+## Video of Lab
+
+Click image to download video of lab walk-through.
+
+[![Logic App Demo Video](images/logic_app_lab_first_frame.png)](logic_app_lab.mp4)
 
 ## Create Logic App
 
