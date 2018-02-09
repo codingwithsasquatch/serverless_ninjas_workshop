@@ -13,11 +13,11 @@ Example JSON (no values)
         }
 }
 		
-Server=ninjacharacters
-Access Key = Look on white board
+Server=ninjacharactersdb
+Access Key = QgpwtYrAsZqYUSTnbp4McXHpJBrnTYdPlUnCvzoNugGoKrn5nfb1sT5zM6paOewHx4tuRhpnuiXXyBgnXE (Look on board for last six characters)
 Database ID=characters
 Collection ID = charactercollection
 
 SQL Statement:  SELECT * FROM c where c.name =''
-API URL- https://ninjamanagement.azure-api.net/manual/paths/invoke
-Ocp-Apim-Subscription-Key:  Ocp-Apim-Subscription-Key:  82f0543b74e9429aa4b6af6b0c2f (Look on board for last four characters)
+API URL- https://ninjamanagment.azure-api.net/character/manual/paths/invoke
+Ocp-Apim-Subscription-Key:  c2b82d0552cb4c4580322cd46257 (Look on board for last four characters)
