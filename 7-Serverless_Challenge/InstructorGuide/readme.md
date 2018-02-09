@@ -59,3 +59,4 @@ Application settings required for the Function App:
 * Postman
 * cURL
 * Fiddler
+* Cloud Shell (https://shell.azure.com/ or within the Azure Portal)
