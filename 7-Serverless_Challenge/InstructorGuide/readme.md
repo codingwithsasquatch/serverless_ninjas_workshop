@@ -9,14 +9,16 @@ It is recommended that the attendees of the workshop break up into teams to coll
 
 1. Refer attendees to the [Serverless Challenge](https://github.com/codingwithsasquatch/serverless_ninjas_workshop/tree/master/7-Serverless_Challenge). Walk through the requirements and address any questions.
 
-2. Provide the necessary key for the API calls.
+2. Provide the necessary key for the API calls: https://aka.ms/serverlesscontentkeys
 
 3. Demonstrate how to retrieve the list of products using Postman, Fiddler, cURL or your tool of choice. Highlight the API key in the header and how to apply it. Examples:
 
        URL: GET https://ninjachallenge.azurewebsites.net/api/list?code={api-key}
        CURL: curl --header "x-functions-key: {api-key}" https://ninjachallenge.azurewebsites.net/api/list
 
-4. Recommend a designated product from the service for each team to work with.
+4. Break attendees up into teams and assign them a dedicated API (ninjachallenge{number}.azurewebsites.net) to work with.
+
+5. Solicit help from proctors during the challenge.
 
 ----
 ## Resources
