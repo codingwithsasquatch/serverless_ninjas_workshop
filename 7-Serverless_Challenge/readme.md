@@ -34,14 +34,16 @@ The solution can include any combination of Azure Functions, Logic Apps and Even
 
 ## APIs
 
-A collection of APIs are provided to support the solution. Authorization is handled with an API key that can be passed into the header of each request. The proctor or instructor will provide the key at the time of the exercise.
+A collection of APIs are provided to support the solution. Authorization is handled with an API key that can be passed into the header of each request. 
+
+The proctor or instructor will provide the key at the time of the exercise.
 
 1) Get details about a product (name and inventory count):
 
    * Method: GET
    * Headers: x-functions-key
    * URL: https://ninjachallenge.azurewebsites.net/api/details/{id}
-   * Example: https://ninjachallenge.azurewebsites.net/api/details/2
+   * Example: https://ninjachallenge.azurewebsites.net/api/details/2?code={api-key}
    * CURL: curl --header "x-functions-key: {api-key}" https://ninjachallenge.azurewebsites.net/api/details/2
 
 2) Restock a product:
@@ -49,7 +51,7 @@ A collection of APIs are provided to support the solution. Authorization is hand
    * Method: POST
    * Headers: x-functions-key
    * URL: https://ninjachallenge.azurewebsites.net/api/add/{id}/{count}
-   * Example: https://ninjachallenge.azurewebsites.net/api/add/1/10
+   * Example: https://ninjachallenge.azurewebsites.net/api/add/1/10?code={api-key}
    * CURL: curl -d "" -H "x-functions-key: {api-key}" -X POST https://ninjachallenge.azurewebsites.net/api/add/1/10
 
 3) Decrement the product count:
@@ -57,7 +59,7 @@ A collection of APIs are provided to support the solution. Authorization is hand
    * Method: POST
    * Headers: x-functions-key
    * URL: https://ninjachallenge.azurewebsites.net/api/remove/{id}/{count}
-   * Example: https://ninjachallenge.azurewebsites.net/api/remove/1/10
+   * Example: https://ninjachallenge.azurewebsites.net/api/remove/1/10?code={api-key}
    * CURL: curl -d "" -H "x-functions-key: {api-key}" -X POST https://ninjachallenge.azurewebsites.net/api/remove/1/10
 
 4) Get a list of products:
@@ -65,7 +67,7 @@ A collection of APIs are provided to support the solution. Authorization is hand
    * Method: GET
    * URL: https://ninjachallenge.azurewebsites.net/api/list
    * Headers: x-functions-key
-   * Example: https://ninjachallenge.azurewebsites.net/api/list
+   * Example: https://ninjachallenge.azurewebsites.net/api/list?code={api-key}
    * CURL: curl --header "x-functions-key: {api-key}" https://ninjachallenge.azurewebsites.net/api/list
 
 ## Suggestions
