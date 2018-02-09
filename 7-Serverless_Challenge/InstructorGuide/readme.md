@@ -13,7 +13,7 @@ It is recommended that the attendees of the workshop break up into teams to coll
 
 3. Demonstrate how to retrieve the list of products using Postman, Fiddler, cURL or your tool of choice. Highlight the API key in the header and how to apply it. Examples:
 
-       URL: GET https://ninjachallenge.azurewebsites.net/api/list
+       URL: GET https://ninjachallenge.azurewebsites.net/api/list?code={api-key}
        CURL: curl --header "x-functions-key: {api-key}" https://ninjachallenge.azurewebsites.net/api/list
 
 4. Recommend a designated product from the service for each team to work with.
@@ -34,6 +34,11 @@ The following services have been provisioned to support the challenge:
   * Remove - Decrements the count (https://ninjachallenge.azurewebsites.net/api/remove/{id}/{count})
   * Details - Gets the details for a product by ID (https://ninjachallenge.azurewebsites.net/api/details/{id})
   * List - Gets all products (https://ninjachallenge.azurewebsites.net/api/list)
+
+The API key can be appended to the URLs or added to the header of each request.
+
+* Query string example: https://ninjachallenge.azurewebsites.net/api/list?code={api-key}
+* Header name: x-functions-key
 
 Attendees do not need to make any changes to the services, they will just call the APIs to work with the inventory of products.
 
