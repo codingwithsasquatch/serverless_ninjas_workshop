@@ -303,7 +303,7 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
 
 1. In another new window go to [https://aka.ms/eventgen](https://aka.ms/eventgen) in a web browser
 
-1. Select Event Hub as the messaging service
+1. Select Event Grid as the messaging service
 
     ![eventgen Event Grid](images/eventgen_eventgrid.png "eventgen Event Grid")
 
