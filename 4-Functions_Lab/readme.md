@@ -165,11 +165,11 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
 
     ```javascript
         module.exports = function (context, eventHubMessages) {
-            context.log(`JavaScript eventhub trigger function called for message array ${eventHubMessages}`);
+            context.log(`JavaScript eventhub trigger function called for message array ${JSON.stringify(eventHubMessages)}`);
             var messages = [];
 
             eventHubMessages.forEach(message => {
-                context.log(`Processed message ${message}`);
+                context.log(`Processed message ${message.description}`);
                 messages.push(message);
             });
 
