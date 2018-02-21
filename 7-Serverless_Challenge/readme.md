@@ -42,33 +42,33 @@ The proctor or instructor will provide the key at the time of the exercise.
 
    * Method: GET
    * Headers: x-functions-key
-   * URL: https://ninjachallenge{Ninja Challenge Number}.azurewebsites.net/api/details/{id}
-   * Example: https://ninjachallenge{Ninja Challenge Number}.azurewebsites.net/api/details/2?code={api-key}
-   * CURL: curl --header "x-functions-key: {api-key}" https://ninjachallenge{Ninja Challenge Number}.azurewebsites.net/api/details/2
+   * URL: https://ninjachallenge{challenge-number}.azurewebsites.net/api/details/{id}
+   * Example: https://ninjachallenge{challenge-number}.azurewebsites.net/api/details/2?code={api-key}
+   * CURL: curl --header "x-functions-key: {api-key}" https://ninjachallenge{challenge-number}.azurewebsites.net/api/details/2
 
 2) Restock a product:
 
    * Method: POST
    * Headers: x-functions-key
-   * URL: https://ninjachallenge{Ninja Challenge Number}.azurewebsites.net/api/add/{id}/{count}
-   * Example: https://ninjachallenge{Ninja Challenge Number}.azurewebsites.net/api/add/1/10?code={api-key}
-   * CURL: curl -d "" -H "x-functions-key: {api-key}" -X POST https://ninjachallenge{Ninja Challenge Number}.azurewebsites.net/api/add/1/10
+   * URL: https://ninjachallenge{challenge-number}.azurewebsites.net/api/add/{id}/{count}
+   * Example: https://ninjachallenge{challenge-number}.azurewebsites.net/api/add/1/10?code={api-key}
+   * CURL: curl -d "" -H "x-functions-key: {api-key}" -X POST https://ninjachallenge{challenge-number}.azurewebsites.net/api/add/1/10
 
 3) Decrement the product count:
 
    * Method: POST
    * Headers: x-functions-key
-   * URL: https://ninjachallenge{Ninja Challenge Number}.azurewebsites.net/api/remove/{id}/{count}
-   * Example: https://ninjachallenge{Ninja Challenge Number}.azurewebsites.net/api/remove/1/10?code={api-key}
-   * CURL: curl -d "" -H "x-functions-key: {api-key}" -X POST https://ninjachallenge{Ninja Challenge Number}.azurewebsites.net/api/remove/1/10
+   * URL: https://ninjachallenge{challenge-number}.azurewebsites.net/api/remove/{id}/{count}
+   * Example: https://ninjachallenge{challenge-number}.azurewebsites.net/api/remove/1/10?code={api-key}
+   * CURL: curl -d "" -H "x-functions-key: {api-key}" -X POST https://ninjachallenge{challenge-number}.azurewebsites.net/api/remove/1/10
 
 4) Get a list of products:
 
    * Method: GET
-   * URL: https://ninjachallenge{Ninja Challenge Number}.azurewebsites.net/api/list
+   * URL: https://ninjachallenge{challenge-number}.azurewebsites.net/api/list
    * Headers: x-functions-key
-   * Example: https://ninjachallenge{Ninja Challenge Number}.azurewebsites.net/api/list?code={api-key}
-   * CURL: curl --header "x-functions-key: {api-key}" https://ninjachallenge{Ninja Challenge Number}.azurewebsites.net/api/list
+   * Example: https://ninjachallenge{challenge-number}.azurewebsites.net/api/list?code={api-key}
+   * CURL: curl --header "x-functions-key: {api-key}" https://ninjachallenge{challenge-number}.azurewebsites.net/api/list
 
 ## Suggestions
 
