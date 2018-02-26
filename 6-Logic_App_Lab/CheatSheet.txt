@@ -5,8 +5,7 @@ Example JSON (no values)
 {
         "name": "",
         "id": "",
-        "Attributes": {
-            "Category": [
+        "category": [
                 "",
                 ""
             ]
