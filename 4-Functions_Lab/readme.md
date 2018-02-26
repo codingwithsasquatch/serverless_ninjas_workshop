@@ -209,8 +209,7 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
 
 ## Blob Storage Events with Event Grid 
 
-TODO: Replace this diagram
-![Event Grid Diagram](images/eventgrid_diagram.png "Event Grid Diagram")
+![Event Grid Diagram](images/eventgrid_lab.png "Event Grid Diagram")
 
 1. Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
 1. Click the New button
