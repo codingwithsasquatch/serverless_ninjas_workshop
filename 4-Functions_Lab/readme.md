@@ -207,8 +207,9 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
 
     ![app insights live stream](images/app_insights_live_stream_dashboard.png "app insights live stream")
 
-## Event Processing from Event Grid
+## Blob Storage Events with Event Grid 
 
+TODO: Replace this diagram
 ![Event Grid Diagram](images/eventgrid_diagram.png "Event Grid Diagram")
 
 1. Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
@@ -216,31 +217,31 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
 
     ![New Button](images/new_button.png "New Button")
 
-1. Type "event grid topic" into the search box and select Event Grid Topic when it pops up
+1. Type "storage account" into the search box and select Storage account when it pops up
 
-    ![Event Grid Topic](images/eventgrid_topic.png "Event Grid Topic")
-
-1. Click "Event Grid"
-
-    ![Event Grid Topic](images/select_eventgrid.png "Event Grid Topic")
+    ![Storage Account](images/storage_account.png "Storage Account")
 
 1. Then click "Create"
 
     ![Create](images/create.png "Create")
 
-1. Give it a name, a location, and again let's use the same existing Resource Group as our Function App and Event Hub just to keep everything organized and then click create
+1. Give it a name, a location, and use the same existing Resource Group. Select StorageV2 for the account kind.
 
-    ![Create Event Grid Topic](images/eventgrid_topic_create.png "Create Event Grid Topic")
+    ![Create Storage Account](images/create_storage_account.png "Create Storage Account")
 
-1. When the deployment finshes, we can create a function that subscripbes to the Event Grid Topic we just created. Click on the "go to resource group" button of the deployment notification
+1. When the deployment finshes, click on the "Go to resource" button of the deployment notification.
 
-    ![Go to Resource Group](images/goto_resourcegroup.png "Go to Resource Group")
+    ![Go to Resource Group](images/storage_account_goto_resource.png "Go to Resource Group")
 
-1. Then click on your function app
+1. Then click on Blobs from the Overview blade.
 
-    ![Function](images/click_function.png "Function")
+    ![Blobs](images/storage_account_blobs.png "Blobs")
 
-1. Create a new function by clicking on the plus sign next to the functions section on the left
+1. Click to add a new Container. Provide a name for the container and leave the access level set to Private.
+
+    ![New Container](images/storage_account_new_container.png "New Container")
+
+1. Go back to the Function App and create a new function by clicking on the plus sign next to the functions list on the left.
 
     ![New Function](images/new_function.png "New Function")
 
@@ -252,13 +253,13 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
 
     ![Create Event Grid trigger](images/create_eventgrid_function_trigger.png "Create Event Grid trigger")
 
-1. Now let's setup the Event Grid subscription. Start by clicking on the "Add Event Grid subscription" link in the uper right-hand corner
+1. Now let's setup the Event Grid subscription. Start by clicking on the "Add Event Grid subscription" link in the upper right-hand corner
 
     ![Add Event Grid subscription](images/add_eventgrid_subscription.png "Add Event Grid subscription")
 
-1. In the menu that opens. Enter a Name for the subscription, set the Topic Type to "Event Grid Topics," make sure the correct subscription, resource group, and instance of your Event Grid Topic are selected, and click create
+1. In the menu that opens: enter a Name for the subscription, set the Topic Type to "Storage Accounts", make sure the correct subscription, resource group, and storage account instance are selected. Uncheck the "Subscribe to all event types" box and choose the "Blob Created" type. Lastly, add a suffix filter for .png files and click Create.
 
-    ![Event Grid subscription settings](images/eventgrid_subscription_settings.png "Event Grid subscription settings")
+    ![Event Grid blob subscription settings](images/eventgrid_blob_subscription_settings.png "Event Grid blob subscription settings")
 
 1. Now let's add an output binding for Cosmos DB, just like we did before with the Event Hub. Click the integrate link for your function
 
@@ -301,20 +302,14 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
 
     ![app insights live stream](images/app_insights_live_stream.png "app insights live stream")
 
-1. In another new window go to [https://aka.ms/eventgen](https://aka.ms/eventgen) in a web browser
+1. In a new window or browser tab, go to the container we created earlier for the storage account and click on the Upload link. You are also welcome to use a tool like [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/).
 
-1. Select Event Grid as the messaging service
+    ![Upload blobs](images/storage_account_container_upload.png "Upload blobs")
 
-    ![eventgen Event Grid](images/eventgen_eventgrid.png "eventgen Event Grid")
+1. Upload one or more files, at least a few with the .png extension. 
 
-1. Paste in the connection string and event hub name you saved earlier
-
-    ![eventgen Event Grid settings](images/eventgen_eventgrid_settings.png "eventgen Event Grid settings")
-
-1. Choose Ninja Battle, set the duration to 1 minute, set the frequency to whatever you'd like, and click start!
-
-    ![eventgen messages](images/eventgen_messages.png "eventgen messages")
+    ![Upload blob](images/storage_account_container_upload_blob.png "Upload blob")
 
 1. Now let's watch the live streaming in Application Insights
 
-    ![app insights live stream](images/app_insights_live_stream_dashboard.png "app insights live stream")
+    ![app insights live stream](images/app_insight_blobevents.png "app insights live stream")
