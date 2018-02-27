@@ -165,16 +165,34 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
 
     ```javascript
         module.exports = function (context, eventHubMessages) {
-            context.log(`JavaScript eventhub trigger function called for message array ${eventHubMessages}`);
+            context.log(`JavaScript eventhub trigger function called for message array ${JSON.stringify(eventHubMessages)}`);
             var messages = [];
 
             eventHubMessages.forEach(message => {
-                context.log(`Processed message ${message}`);
+                context.log(`Processed message ${message.description}`);
                 messages.push(message);
             });
 
             context.done(null, messages);
         };
+    ```
+
+    ```csharp
+        #r "Newtonsoft.Json"
+
+        using System;
+        using Newtonsoft.Json.Linq;
+        
+        public static void Run(string[] eventHubMessages, ICollector<dynamic> documents, TraceWriter log)
+        {
+            log.Info($"C# Event Hub trigger function processed a message: {eventHubMessages}");
+        
+            foreach (var eventHubMessage in eventHubMessages){
+                log.Info($"Processed message: {eventHubMessage}");
+                dynamic doc = JObject.Parse(eventHubMessage);
+                documents.Add(doc);
+            }
+        }
     ```
 
 1. Now we can start using it. Click on the function app name
@@ -283,10 +301,25 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
 1. Below is the code we will use to insert the events into Cosmos DB
 
     ```javascript
-    module.exports = function (context, eventGridEvent) {
-        context.log(eventGridEvent.Data);
-        context.done(null, eventGridEvent.Data);
-    };
+        module.exports = function (context, eventGridEvent) {
+            context.log(eventGridEvent.Data);
+            context.done(null, eventGridEvent.Data);
+        };
+    ```
+
+
+    ```csharp
+        #r "Microsoft.Azure.WebJobs.Extensions.EventGrid"
+        #r "Newtonsoft.Json"
+
+        using Newtonsoft.Json.Linq;
+        using Microsoft.Azure.WebJobs.Extensions.EventGrid;
+
+        public static void Run(EventGridEvent  eventGridEvent, out dynamic doc, TraceWriter log)
+        {
+            log.Info(eventGridEvent.Data.ToString());
+            doc = JObject.Parse(eventGridEvent.Data.ToString());
+        }
     ```
 
 1. Now we can start using it. Click on the function app name
@@ -303,7 +336,7 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
 
 1. In another new window go to [https://aka.ms/eventgen](https://aka.ms/eventgen) in a web browser
 
-1. Select Event Hub as the messaging service
+1. Select Event Grid as the messaging service
 
     ![eventgen Event Grid](images/eventgen_eventgrid.png "eventgen Event Grid")
 
