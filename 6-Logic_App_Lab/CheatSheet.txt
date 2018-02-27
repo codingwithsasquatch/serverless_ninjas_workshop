@@ -10,7 +10,6 @@ Example JSON (no values)
                 ""
             ]
         }
-}
 		
 Account ID =ninjacharactersdb
 Access Key = xUXEVgsuHtXSLyOWM8N1mjAt5dinAvKPhsX24voeZMO0h6uSD0tbQcTulHY76CyNZ5MOddx1ZsISKbDC5iy6KA==
