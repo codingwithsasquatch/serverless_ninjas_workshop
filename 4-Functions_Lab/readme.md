@@ -147,7 +147,7 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
 
     ![CosmosDB output](images/function_cosmosdb_output.png "CosmosDB Output")
 
-1. Select the "Use function return value" checkbox. Enter a database name and collection name to use and then check the create database and collection check box then click the new button next to the Cosmos DB account connection
+1. Enter a value Document parameter name, this is the object that will be posted to Cosmos DB. Enter a database name and collection name to use and then check the create database and collection check box then click the new button next to the Cosmos DB account connection
 
     ![CosmosDB output](images/function_cosmosdb_settings.png "CosmosDB Output")
 
@@ -164,17 +164,36 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
 1. Below is the code we will use to insert the events into Cosmos DB
 
     ```javascript
-        module.exports = function (context, eventHubMessages) {
-            context.log(`JavaScript eventhub trigger function called for message array ${eventHubMessages}`);
-            var messages = [];
+    module.exports = function (context, eventHubMessages) {
+        context.log(`JavaScript eventhub trigger function called for message array ${JSON.stringify(eventHubMessages)}`);
+        var messages = [];
 
-            eventHubMessages.forEach(message => {
-                context.log(`Processed message ${message}`);
-                messages.push(message);
-            });
+        eventHubMessages.forEach(message => {
+            context.log(`Processed message ${message.description}`);
+            messages.push(message);
+        });
 
-            context.done(null, messages);
-        };
+        context.bindings.documents = messages;
+        context.done();
+    };
+    ```
+
+    ```csharp
+    #r "Newtonsoft.Json"
+
+    using System;
+    using Newtonsoft.Json.Linq;
+
+    public static async Task Run(string[] eventHubMessages, IAsyncCollector<dynamic> documents, TraceWriter log)
+    {
+        log.Info($"C# Event Hub trigger function processed a message: {eventHubMessages}");
+
+        foreach (var eventHubMessage in eventHubMessages){
+            log.Info($"Processed message: {eventHubMessage}");
+            dynamic doc = JObject.Parse(eventHubMessage);
+            await documents.AddAsync(doc);
+        }
+    }
     ```
 
 1. Now we can start using it. Click on the function app name
@@ -272,7 +291,7 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
 
     ![CosmosDB output](images/function_eventgrid_cosmosdb_output.png "CosmosDB Output")
 
-1. Select the "Use function return value" checkbox. Enter a database name and collection name to use and then check the create database and collection check box then click the new button next to the Cosmos DB account connection. Then click "Save" and we are ready to start writing our code!
+1. Enter a database name and collection name to use and then check the create database and collection check box then click the new button next to the Cosmos DB account connection. Then click "Save" and we are ready to start writing our code!
 
     ![CosmosDB output](images/function_eventgrid_cosmosdb_settings.png "CosmosDB Output")
 
@@ -284,9 +303,27 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
 
     ```javascript
     module.exports = function (context, eventGridEvent) {
-        context.log(eventGridEvent.Data);
-        context.done(null, eventGridEvent.Data);
+        context.log(typeof eventGridEvent);
+        context.log(eventGridEvent);
+
+        context.bindings.document = eventGridEvent.data
+        context.done();
     };
+    ```
+
+    ```csharp
+    #r "Newtonsoft.Json"
+
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+
+    public static void Run(JObject eventGridEvent, out dynamic document, TraceWriter log)
+    {
+        log.Info(eventGridEvent.ToString(Formatting.Indented));
+        log.Info(eventGridEvent["data"].ToString());
+        
+        document = JObject.Parse(eventGridEvent["data"].ToString());
+    }
     ```
 
 1. Now we can start using it. Click on the function app name
@@ -303,7 +340,7 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
 
 1. In another new window go to [https://aka.ms/eventgen](https://aka.ms/eventgen) in a web browser
 
-1. Select Event Hub as the messaging service
+1. Select Event Grid as the messaging service
 
     ![eventgen Event Grid](images/eventgen_eventgrid.png "eventgen Event Grid")
 

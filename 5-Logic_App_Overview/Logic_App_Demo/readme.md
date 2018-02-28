@@ -158,7 +158,7 @@ This demo uses the Azure Storage Explorer [https://azure.microsoft.com/en-us/fea
 
     ![Parse Content](images/logic_app_sample_payload.png "Parse Content")
 
-1. Copy the code from [sampleschema.json](sampleschema.json) and paste it into the editor.  Then press Done.
+1. Copy the code from [sampleschema.json](setup_data/sampleschema.json) and paste it into the editor.  Then press Done.
 
     ![Schema Editor](images/logic_app_parse_schema.png "Schema Editor")
 

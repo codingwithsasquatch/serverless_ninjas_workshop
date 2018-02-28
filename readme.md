@@ -1,6 +1,6 @@
 # Azure Serverless Ninjas Workshop
 
-insert image of functions logic app and event grid here
+![Azure Serverless Workshop](workshop.png "Azure Serverless Workshop")
 
 ## Overview
 
