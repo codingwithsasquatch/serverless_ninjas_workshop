@@ -10,14 +10,13 @@ Example JSON (no values)
                 ""
             ]
         }
-}
 		
 Account ID =ninjacharactersdb
-Access Key = xUXEVgsuHtXSLyOWM8N1mjAt5dinAvKPhsX24voeZMO0h6uSD0tbQcTulHY76CyNZ5MOddx1ZsISKbDC5iy6KA==
+Access Key = 
 Database ID=characters
 Collection ID = charactercollection
 
 SQL Statement:  SELECT * FROM c where c.name =''
 API URL- https://ninjamanagment.azure-api.net/character/manual/paths/invoke
-Ocp-Apim-Subscription-Key:  c2b82d0552cb4c4580322cd46257728c
+Ocp-Apim-Subscription-Key:  
 
