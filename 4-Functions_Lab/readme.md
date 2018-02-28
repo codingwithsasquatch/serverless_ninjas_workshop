@@ -27,7 +27,7 @@
 
     ![Create Event Hub](images/create_event_hub.png "Create Event Hub")
 
-1. When the deployment finshes, we need to create the event hub in the event hub namespace. Click on the "go to resource" button of the deployment notification
+1. When the deployment finishes, we need to create the event hub in the event hub namespace. Click on the "go to resource" button of the deployment notification
 
     ![Go to Event Hub](images/goto_event_hub.png "Go to Event Hub")
 
@@ -95,7 +95,7 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
 
     ![Function App](images/function_search.png "Function App")
 
-1. On the next blade select Event Hubs
+1. On the next blade select Function App
 
     ![Function App](images/function.png "Function App")
 
@@ -321,7 +321,7 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
     {
         log.Info(eventGridEvent.ToString(Formatting.Indented));
         log.Info(eventGridEvent["data"].ToString());
-        
+
         document = JObject.Parse(eventGridEvent["data"].ToString());
     }
     ```
