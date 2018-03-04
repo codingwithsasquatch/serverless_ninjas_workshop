@@ -304,7 +304,7 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
     ```javascript
     module.exports = function (context, eventGridEvent) {
         context.log(eventGridEvent);
-        context.done(null, eventGridEvent);
+        context.done(null, {document: eventGridEvent});
     };
     ```
 
