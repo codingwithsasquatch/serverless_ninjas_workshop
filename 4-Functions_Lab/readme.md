@@ -302,11 +302,27 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
 1. Below is the code we will use to insert the events into Cosmos DB
 
     ```javascript
-    module.exports = function (context, eventGridEvent) {
+    module.exports = function (context, eventGridEvent) {        
         context.log(eventGridEvent);
-        context.done(null, eventGridEvent);
+        context.bindings.document = eventGridEvent.data;
+        context.done();
     };
     ```
+
+    ```csharp
+    #r "Newtonsoft.Json"
+
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+
+    public static void Run(JObject eventGridEvent, out object document, TraceWriter log)
+    {
+        log.Info(eventGridEvent.ToString(Formatting.Indented));
+        log.Info(eventGridEvent["data"].ToString());    
+        document = JObject.Parse(eventGridEvent["data"].ToString());  
+    }
+    ```
+
 
 1. Now we can start using it. Click on the function app name
 
