@@ -135,9 +135,13 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
 
     ![Finish New Function](images/finish_function_settings.png "Finish New Function")
 
-1. Now let's add an output binding for Cosmos DB. Click the integrate link for your function
+1. Click the integrate link for your function
 
     ![Integrate Function](images/integrate_function.png "Integrate Function")
+
+1. Update the parameter name and click save.
+
+    ![Parameter name](images/integrate_function_parameter_name.png "Parameter name")
 
 1. Click the "New Output" button
 
