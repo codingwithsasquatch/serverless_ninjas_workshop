@@ -295,7 +295,7 @@ Now that we have an event hub let's create an instance of CosmosDB where we can 
 
     ![CosmosDB output](images/function_eventgrid_cosmosdb_output.png "CosmosDB Output")
 
-1. Select the "Use function return value" checkbox. Enter a database name and collection name to use and then check the create database and collection check box then click the new button next to the Cosmos DB account connection. Then click "Save" and we are ready to start writing our code!
+1. Update the parameter, database and collection names to use. Select the option to create the database and collection. Finally, click "Save" and we are ready to start writing our code!
 
     ![CosmosDB output](images/function_eventgrid_cosmosdb_settings.png "CosmosDB Output")
 
