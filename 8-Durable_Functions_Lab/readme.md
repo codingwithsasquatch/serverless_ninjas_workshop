@@ -130,7 +130,7 @@ In this section we will test our first Durable Function in the Azure Portal
     ![Orchestrator JSON output](images/actual-response-json.PNG "Orchestrator JSON output")
 
 
-Congratulations! You created your first Durable Function and you successfully run your first orchestration! 
+Congratulations! You have just created your first Durable Function and you successfully run your first orchestration! 
 
 
 
