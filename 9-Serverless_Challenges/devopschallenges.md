@@ -5,18 +5,18 @@ This challenges help you to configure development environment and add DevOps cap
 
 ## Challenge 1. Building your local environment
 
-As your success of the serverless architecture adoption, several people is joining your team. 
-You need to have separate development environment with your colleague to develop in parallel. 
+Your project is getting very successful and popular, so new people are joining your team.
+You need to create separate development environments to develop in parallel with your colleagues. 
 
 ### Requirement
 
- You need to setup your local development environment on your PC. You can choose C# or Javascript  
+ You need to setup your local development environment on your PC. You can choose to setup C# or Javascript based environment.  
 
 ### Success criteria
 
-* You can run your function locally using Storage Emulator
-* You can debug your function locally with a break point
-* You can push your function to the Azure
+* You can run your function locally using Storage Emulator.
+* You can debug your function locally with a break point.
+* You can deploy your function to the Azure.
 
 ### Reference
 
