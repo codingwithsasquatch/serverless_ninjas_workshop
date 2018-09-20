@@ -1,6 +1,6 @@
 # Serverless DevOps challenges
 
-This challenges help you to apply development environment and DevOps capability to your Serverless world. 
+This challenges help you to configure development environment and add DevOps capability to your Serverless world. 
 
 
 ## Challenge 1. Building your local environment
