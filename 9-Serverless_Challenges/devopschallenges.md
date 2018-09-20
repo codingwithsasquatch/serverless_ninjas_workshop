@@ -25,19 +25,19 @@ You need to create separate development environments to develop in parallel with
 
 
 
-## Challenge 2. CI/ CD pipeline
+## Challenge 2. CI/CD pipeline
 
-Your team need to share the code with your colleague to a private repository. Using Azure DevOps, set up the private repository with CI/CD pipeline
+Your team needs to share the code via private repository.Using Azure DevOps, set up the private repository with CI/CD pipeline.
 
 ## Requirement
 
-Upload your code to the Azure DevOps with a very simple unit test code. Once you submit a pull request, it start build/test your pull request automatically. Also, once you check in to the master, it automatically build/test/deploy to Azure.
+Upload your code to Azure DevOps with a very simple unit tests. Once you submit a pull request, it starts build/test of the pull request's code automatically. Also, once you merge it to the master branch, it automatically build/test/deploy to Azure.
 
 ## Success criteria
      
-* You can share the code in a private repo
-* Your pull request triggs a CI pipeline with at least one unit test code.
-* Automatically detect the change of master branch, triggs CI/CD pipeline to build/test/deploy to Azure.
+* You can share the code via private repo.
+* Your pull request triggers a CI pipeline with at least one unit test code.
+* Automatically detects the change of master branch and triggers CI/CD pipeline for build/test/deploy to Azure.
 
 ### Reference 
 
