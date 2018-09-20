@@ -47,19 +47,23 @@ Upload your code to Azure DevOps with a very simple unit tests. Once you submit 
 
 ## Challenge 3. Run on container (Preview)
 
-As your function is totally available, people from other division want to use it. However, they don't have Azure environment. They required it works on premise environment. You need to run your function locally on container. 
+As your function is totally available, people from other division want to use it. However, they don't have access to Azure environment. They want to run your function on premise environment. You need to package your function in a Docker container.
 
 ## Requirement
 
-Pack your function into docker container and run on your local machine with sharing on DockerHub or Azure Container Registry then run on Azure
+Pack your function into a Docker container and run it on your local machine. Then share the container via DockerHub or Azure Container Registry. The final step is run it on Azure.
 
 ## Success criteria
 
-Your container works on your local machine as a docker container
-Your image is uploaded to the DockerHub or Azure Container Registry
-Run the docker container on Azure 
+* Your container works on your local machine as a docker container.
+* Your image is uploaded to the DockerHub or Azure Container Registry.
+* You are able to run the Docker container on Azure. 
 
-NOTE: You have three ways to run this. Azure Functions, Azure Container Instances, Azure Kubernetes Services
+You have three ways to run the Docker container in Azure:
+
+1. Azure Functions
+2. Azure Container Instances
+3. Azure Kubernetes Services
 
 ### Reference 
 
