@@ -1,137 +1,144 @@
-# Serverless Event Streaming Hands-On Lab
+# サーバーレス イベントストリーミング　ハンズオンラボ
 
-## Event Processing from Event Hub
+## イベントハブからのイベントを処理
 
 ![Event Hub Diagram](images/eventhub_diagram.png "Event Hub Diagram")
 
-### Create Event Hub
+### イベントハブの作成
 
-1. Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
-1. Click the New button
+1. Azure ポータルに接続。[https://portal.azure.com](https://portal.azure.com)
+
+1. 「リソースの作成」をクリック。
 
     ![New Button](images/new_button.png "New Button")
 
-1. Type "event hubs" into the search box and select Event Hub when it pops up
+1. 検索ボックスより "event hubs" と入力して候補から選択。
 
     ![Event Hubs](images/event_hub.png "Event Hubs")
 
-1. On the next blade select Event Hubs
+1. 検索結果より Event Hubs を選択。
 
     ![Event Hubs](images/event_hubs.png "Event Hubs")
 
-1. Then click "Create"
+1. 「作成」をクリック。
 
     ![Create](images/create.png "Create")
 
-1. Give it a name, location, resource group, location, and scale then click create
+1. 名前、価格レベル、リソースグループ、場所などを指定して、「作成」をクリック。
 
     ![Create Event Hub](images/create_event_hub.png "Create Event Hub")
 
-1. When the deployment finishes, we need to create the event hub in the event hub namespace. Click on the "go to resource" button of the deployment notification
+1. 作成が完了したら、ハブを追加するため、通知からリソースへ移動。もしくは、リソース グループの一覧より、作成した Event Hub を選択して移動。
 
     ![Go to Event Hub](images/goto_event_hub.png "Go to Event Hub")
 
-1. Click the "Event Hubs" link under Entities
+1. エンティティメニューにある「Event Hubs」をクリック。
 
     ![Event Hubs](images/event_hub_entities.png "Event Hubs")
 
-1. Click the New Event Hub button
+1. 「イベント ハブ」ボタンをクリックして新規にハブを作成。
 
     ![New Event Hub](images/new_event_hub.png "New Event Hub")
 
-1. Then we can give the event hub a name and leave the rest of the settings as the defaults and click create
+1. 名前を指定。他の設定は既定のままで「作成」をクリック。
 
     ![New Event Hub Settings](images/new_event_hub_settings.png "New Event Hub Settings")
 
-1. Once your event hub entity has been created click on it and then click Shared Access policies
+1. 作成されたイベントハブをクリックし、「共有アクセスポリシー」をクリック。
 
     ![Shared Access policies](images/event_hub_sas.png "Shared Access policies")
 
-1. Click Add
+1. 「追加」をクリック。
 
     ![Add](images/add.png "Add")
 
-1. Give you policy a name, select the send right, and then click create
+1. ポリシーに名前を付けて、「送信」を選択後、「作成」をクリック。
 
     ![SAS Settings](images/event_hub_sas_properties.png "SAS Settings")
 
-1. Click on the policy you just created and save the Primary Connection String and policy name somewhere as we will need this later
+1. 後で利用するため、作成されたポリシーをクリックして、「接続文字列　- 主キー」の値とポリシーの名前をどこかに保存。
 
     ![SAS Connection String](images/event_hub_connection_string.png "SAS Connection String")
 
-### Create CosmosDB
+### CosmosDB の作成
 
-Now that we have an event hub let's create an instance of CosmosDB where we can put these messages.
+イベントハブは作成したので、次にハブからのメッセージを保存する CosmosDB を作成します。
 
-1. Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
-1. Click the New button
+1. Azure ポータルに接続。[https://portal.azure.com](https://portal.azure.com)
+
+1. 「リソースの作成」をクリック。
 
     ![New Button](images/new_button.png "New Button")
 
-1. Type "Azure Cosmos DB" into the search box and select Azure Cosmos DB when it pops up
+1. "Azure Cosmos DB" と入力して候補から選択。
 
     ![Azure Cosmos DB](images/cosmosdb_search.png "Azure Cosmos DB")
 
-1. On the next blade select Azure Cosmos DB
+1. Azure Cosmos DB を選択。
 
     ![Azure Cosmos DB](images/cosmosdb.png "Azure Cosmos DB")
 
-1. Then click "Create"
+1. 「作成」をクリック。
 
     ![Create](images/create.png "Create")
 
-1. Now let's give it a name,  use SQL as the API (since this data is in JSON format already), and use the same existing Resource Group as our Event Hub just to keep everything organized. Then click "Create"
+1. サブスクリプションとリソースグループを選択。
+
+    ![Azure Cosmos DB Subscription](images/cosmosdb_subscription.png "Create")
+    
+1. 名前を指定後、API より「SQL」を選択して、「Review + create」をクリック。最終確認画面で「Create」をクリック。
 
     ![Create Cosmos DB](images/create_cosmosdb.png "Create Cosmos DB")
 
-### Create Function
+### Function の作成
 
-1. Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
-1. Click the New button
+1.  Azure ポータルに接続。[https://portal.azure.com](https://portal.azure.com)
+
+1. 「リソースの作成」をクリック。
 
     ![New Button](images/new_button.png "New Button")
 
-1. Type "azure functions" into the search box and select Event Hub when it pops up
+1. "function app" と入力して候補から選択。
 
     ![Function App](images/function_search.png "Function App")
 
-1. On the next blade select Function App
+1. Function App を選択。
 
     ![Function App](images/function.png "Function App")
 
-1. Then click "Create"
+1. 「作成」をクリック。
 
     ![Create](images/create.png "Create")
 
-1. On the next screen select a unique name for your function app (confirm with checkmark), again let's use the same existing Resource Group as our Event Hub just to keep everything organized, keep consumption plan selected for the hosting plan, and make sure you choose "On" for Application Insights and then click "Create"
+1. アプリ名を指定し、リソースグループは既存のグループを選択。ランタイムスタックでは「JavaScript」を選択。その他の OS、ホスティングプランや場所、Application Insights の場所は以下の画面の通り選択して「作成」をクリック。
 
-    ![Create Cosmos DB](images/create_function.png "Create Cosmos DB")
+    ![Create Function](images/create_function.png "Create Funcions")
 
-1. When the deployment finshes, we can start writing our function's code. Click on the "go to resource" button of the deployment notification
+1. 作成が完了したら、通知またはリソースグループより、作成した Function App へ移動。
 
     ![Go to Function](images/goto_function.png "Go to Function")
 
-1. Create a new function by clicking on the plus sign next to the functions section on the left
+1. 関数を選択し、「新しい機能」をクリックして関数を作成。
 
     ![New Function](images/new_function.png "New Function")
 
-1. Then click the link that says create your own custom function
-
-    ![Create Custom Function](images/create_custom_function.png "Create Custom Function")
-
-1. Type Event Hub in the search box then click the "JavaScript" language option for the "Event Hub trigger" template
+1. 検索ボックスに Event Hub を入力し、"Event Hub trigger" テンプレートを選択。
 
     ![Choose Function Template](images/choose_function_template.png)
+    
+1. 初めての場合、「拡張機能がインストールされていません」メッセージが出るため、「インストール」を選択。完了したら「続行」をクリック。
 
-1. Click new for the Event Hub connection
+    ![Function Install Template](images/install_extension.png)
+
+1. イベントハブ接続で「新規」をクリック。
 
     ![New Event Hub connection](images/new_event_hub_connection.png "New Event Hub connection")
 
-1. Select the Event Hub you set up in the previous step and "RootManageSharedAccessKey" for the policy. Then click Select
+1. 作成したイベントハブを選択し、ポリシーで "RootManageSharedAccessKey" を指定後「選択」をクリック。
 
     ![Select Event Hub connection](images/select_event_hub_connection.png "Select Event Hub connection")
 
-1. Now enter the name of the Event Hub in the Event Hub Name field and then click Create
+1. イベントハブ名を入力して、「作成」をクリック。
 
     ![Finish New Function](images/finish_function_settings.png "Finish New Function")
 
