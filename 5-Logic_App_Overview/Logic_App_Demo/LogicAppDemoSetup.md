@@ -1,166 +1,159 @@
-# Serverless Logic Apps Demo Setup
+# サーバーレス Logic App デモ環境セットアップ
 
-Setup:  Create Azure Storage Account, CosmosDB, Azure Search
-This must be completed before giving demo.
+セットアップ対象:  Azure ストレージアカウント、Cosmos DB、Azure Search
+デモ実施の前に行ってください。
 
-## Update Deployment template
+## Deployment テンプレートの更新
 
-1. Open the [deployment.json](deployment.json) file in an editor.
+1. [deployment.json](deployment.json) ファイルをエディターで開く。
 
-1. Save the deployment.json file to a local folder directory.
+1. ファイルをローカルに保存。
 
 ## Use template to create Storage, Cosmos DB, and Azure Function
 
-1. Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
+1. Azure ポータルに接続。https://portal.azure.com
 
-1. Click the New button
+1.「リソースの作成」をクリック。
 
     ![New Button](images/new_button.png "New Button")
 
-1. Type "template" into the search box and select Logic App when it pops up
+1. 検索ボックスに "template" 入力し、候補より選択。
 
     ![Template](images/template_search.png "Template")
 
-1. On the next blade select Template Deployment
+1. 次の画面で「テンプレートのデプロイ」を選択。
 
     ![Template Deployment](images/template_deployment_results.png "Template Deployment")
 
-1. Then click "Create"
+1. 「作成」をクリック。
 
     ![Create](images/create.png "Create")
 
-1. Select "Build your own template in the editor"
+1. 「エディターで独自のテンプレートを作成する」をクリック。
 
     ![Build Template](images/template_build.png "Build Template")
 
-1. Click "Load file"
+1. 「ファイルの読込み」をクリック。
 
     ![Build Template](images/template_load_file.png "Build Template")
 
-1. Open the [deployoment.json](deployment.json) file.
+1. 先ほど保存した [deployoment.json](deployment.json) ファイルを指定。
 
     ![Build Template](images/template_json.png "Build Template")
 
-1. Press Save.
+1. 保存をクリック。
 
     ![Build Template](images/template_save.png "Build Template")
 
-1. Fill in the values, giving the resource group a name and location, and prefix name for the resource that will be created in it.  1. Select the terms and agreement check box.
+1. リソースグループなど変数に値を指定。使用条件に同意して「購入」をクリック。
 
     ![Build Template](images/template_settings.png "Build Template")
 
-1. Select purchase.
-
-    ![Build Template](images/template_purchase.png "Build Template")
-
-1. When the deployment finishes, we need to verify the Logic App. Click on the "go to resource" button of the deployment notification
+1. 展開が終わったら、通知より「リソースグループに移動」をクリック。
 
     ![Build Template](images/template_goto_resource.png "Build Template")
 
-## Create a Storage Account Container
+## ストレージアカウントのコンテナを作成
 
-The storage account will be used to upload a file to start the Logic App.
+Logic App を起動するトリガーとしてファイルのアップロードを利用します。ここではそのためのストレージアカウントを設定します。
 
-1. When the deployment finishes, we need to create the blob container in the storage account. Open the storage account created in the deployment.
+1. リソースグループに作成されたリソース一覧より、ストレージアカウント選択。
+    ![Azure Storage Account](images/storage_account.png "Azure Storage Account")
 
-1. Click the Blobs link in the middle of the screen under Services.
+1. BLOB をクリック。
 
     ![Azure Storage](images/storage_blob.png "Azure Storage")
 
-1. On the Blob Service page, select "+ Container"
+1. 「コンテナー」をクリック。
 
     ![Create Storage Container](images/add_container.png "Create Storage Container")
 
-1. On the New Container screen, give the container a name and set the access level.  Then press "OK".
+1. 新しいコンテナー画面で、名前を指定し、「パブリックアクセスレベル」で「コンテナー (コンテナーと BLOB の匿名読み取りアクセス)」を選択して、「OK」をクリック。
 
     ![Storage Container](images/new_container.png "Create Storage Container")
 
-1. (Optional) It is recommended that you download and install Azure Storage Explorer from [https://azure.microsoft.com/en-us/features/storage-explorer/](https://azure.microsoft.com/en-us/features/storage-explorer/).
+1. [Azure ストレージエクスプローラー](https://azure.microsoft.com/en-us/features/storage-explorer/) をダウンロードしてインストール。
 
-    The demo walkthrough does use the Azure Storage Explorer, though the file can be uploaded through the portal.
+## Cosmos DB のコレクション作成
 
-## Create CosmosDB Collection
+次にファイルアップロード後にメッセージを保存する Cosmos DB のコレクションを作成します。
 
-Now that we have an storage account let's create an instance of CosmosDB where the messages from the file will be saved.
+1. リソースグループより Azure Cosmos DB アカウントを選択。
 
-1. Browse to your resource group and open the Azure Cosmos DB account resource.
+    ![Azure Cosmos DB](images/azure_cosmosdb.png "Azure Cosmos DB")
 
-1. On the CosmosDB overview page, Click "Add Collection"
+1. 「Overview」より「Add Collection」をクリック。
 
     ![Add Collection](images/add_collection.png "Add Collection")
 
-1. In the blade on the right hand side, give the database a name, the collection a name, and ensure that storage capacity is set to fixed.  Then press "OK".
+1. データベース名、コレクション名を入力。ストレージの容量を Fix にして「OK」をクリック。
 
     ![Add Collection](images/new_collection.png "Add Collection")
 
-## Create Function
+## ファンクションの作成
 
-1. We need to create the function in the function app.  Browse to your resource group and open the App Service resource.
+1. リソースグループよりファンクション (App Service) を選択。
 
-1. Create a new function by clicking on the plus sign next to the functions section on the left
+    ![Function](images/function.png "Function")
+
+1. 「関数」の横にあるプラスをクリック。
 
     ![New Function](images/new_function.png "New Function")
 
-1. Then click the link that says "Create your own function".
+1. 「カスタム関数を作成する」リンクをクリック。
 
     ![Create HTTP Function](images/create_your_own_function.png "Create HTTP Function")
 
-1. Select the C# value in the HTTP Trigger tile.
+1. 「HTTP Trigger」タイルで C# をクリック。
 
     ![Create HTTP Function](images/function_http_trigger.png "Create HTTP Function")
 
-1. The the HTTP Trigger blade, enter a name for the funtion and press Create.
+1. 名前を指定して「作成」をクリック。
 
     ![Create HTTP Function](images/function_properties.png "Create HTTP Function")
 
-1. Copy the code from [attributemapfunction.txt](setup_data/attributemapfunction.txt) into the run.csx editor.  Press Save.
+1. [attributemapfunction.txt](setup_data/attributemapfunction.txt) よりコードをコピーして、エディターにペースト後、保存。
 
     ![Add Function Code](images/function_code.png "Add Function Code")
 
-## Create Integration Account
+## 統合アカウントの作成
 
-1. Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
+1.  Azure ポータルに接続。https://portal.azure.com
 
-1. Click the New button
+1.「リソースの作成」をクリック。
 
     ![New Button](images/new_button.png "New Button")
 
-1. Type "integration account" into the search box and select Integration when it pops up
+1. 検索ボックスに "integration account" と入力して候補から選択。
 
     ![Integration Account](images/integration_account_save.png "Integration Account")
 
-1. On the next blade select Integration account
+1. 次の画面で「統合アカウント」を選択。
 
     ![Integration Account](images/logic_app_integration_account_result.png "Integration Account")
 
-1. Then click "Create"
+1. 「作成」をクリック。
 
     ![Create](images/create.png "Create")
 
-1. On the next screen select a  name for your Integration Account (confirm with checkmark), again let's use the same existing Resource Group as our Storage Account just to keep everything organized, select a pricing tier and location. Then click "Create"
+1. 名前を指定し、既存のリソースグループを選択。「基本」価格レベルを選択して、「作成」をクリック。
 
     ![Integration Account](images/logic_app_new_integration_account.png "Integration Account")
 
-1. When the deployment finishes, we can start writing our function's code. Click on the "go to resource" button of the deployment notification
+1. 作成が終わったら、通知より「リソースに移動」をクリック。
 
     ![Go to Integration Account](images/integration_account_goto.png "Go to Integration Account")
 
-1. When the Integration Account opens, select the Maps tile.
+1. 「マップ」タイルを選択。
 
     ![Maps](images/integration_account_maps.png "Maps")
 
-1. In the Maps blade, select Add.
+1. 「追加」をクリック。
 
     ![Maps](images/integration_account_add_maps.png "Maps")
 
-1. On the next blade, start by changing the Map type to liquid.
-
-    ![Maps](images/integration_account_map_type.png "Maps")
-
-1. Be sure to create a local copy of the liquid map, [TransformCharacters.liquid](setup_data/TransformCharacters.liquid)
-
-1. Enter a name and browse to the local copy of the TransformCharacters.liquid file.  The press OK.
-
+1. 名前を指定し、マップの種類で「Liquid」を指定。[TransformCharacters.liquid](setup_data/TransformCharacters.liquid) をローカルに保存して、「マップ」ファイルに指定。「OK」をクリックして作成。
+   
     ![Maps](images/integration_account_add_liquid.png "Maps")
 
-The setup steps are now complete.
+以上でデモ用のセットアップは完了です。
