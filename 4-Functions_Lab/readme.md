@@ -237,56 +237,69 @@
 
     ![app insights live stream](images/app_insights_live_stream_dashboard.png "app insights live stream")
 
-## Blob Storage Events with Event Grid
+## イベントグリッド経由で Blob ストレージイベントを処理
 
 ![Event Grid Diagram](images/eventgrid_lab.png "Event Grid Diagram")
 
-1. Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
-1. Click the New button
+1. Azure ポータルに接続。[https://portal.azure.com](https://portal.azure.com)
+
+1. 「リソースの作成」をクリック。
 
     ![New Button](images/new_button.png "New Button")
 
-1. Type "storage account" into the search box and select Storage account when it pops up
+1. "storage account" と入力して候補から選択。
 
     ![Storage Account](images/storage_account.png "Storage Account")
 
-1. Then click "Create"
+1. 「ストレージ アカウント」を選択。
+
+    ![Storage Account](images/storageaccount.png "Storage Account")
+
+1. 「作成」をクリック。
 
     ![Create](images/create.png "Create")
+    
+1. 「リソースグループ」より新規作成をクリックして、新しくリソースグループを作成します。
 
-1. Give it a name, a location, and use the same existing Resource Group. Select StorageV2 for the account kind.
+    ![ResourceGroup](images/new_resourcegroup.png "RG") 
+
+1. ストレージアカウント名、場所を指定。種類では「StorageV2(汎用v2) を選択し、「確認および作成」をクリック。検証が終わったら「作成」をクリック。
 
     ![Create Storage Account](images/create_storage_account.png "Create Storage Account")
 
-1. When the deployment finshes, click on the "Go to resource" button of the deployment notification.
+1. 作成が完了したら、「リソースへ移動」をクリック。
 
     ![Go to Resource Group](images/storage_account_goto_resource.png "Go to Resource Group")
 
-1. Then click on Blobs from the Overview blade.
+1. 概要の画面から、「BLOB」をクリック。
 
     ![Blobs](images/storage_account_blobs.png "Blobs")
 
-1. Click to add a new Container. Provide a name for the container and leave the access level set to Private.
+1. 「コンテナー」ボタンをクリック。名前を付け、アクセスレベルは既定のまま、「OK」をクリック。
 
     ![New Container](images/storage_account_new_container.png "New Container")
 
-1. Go back to the Function App and create a new function by clicking on the plus sign next to the functions list on the left.
+1. 作成済の Function App に戻り、関数を選択。「新しい機能」をクリック。
 
     ![New Function](images/new_function.png "New Function")
 
-1. type "event grid" in the search box and click on the Javascript link of the "Event Grid trigger"
+1. 検索ボックスに "event grid" と入力して、"Event Grid trigger" を選択。
 
     ![Event Grid trigger](images/eventgrid_function_template.png "Event Grid trigger")
 
-1. Give your function a name and click "Create"
+1. 初めての場合は拡張機能のインストールが表示されるので、「インストール」をクリック。
+    
+    ![Eventgrid Extension](images/install_eventgrid_extension.png "Install EventGrid Extension")
+
+1. 関数の作成で、「作成」をクリックします。
 
     ![Create Event Grid trigger](images/create_eventgrid_function_trigger.png "Create Event Grid trigger")
 
-1. Now let's setup the Event Grid subscription. Start by clicking on the "Add Event Grid subscription" link in the upper right-hand corner
+1. 次にイベントグリッドのサブスクリプションを作成します。ファンクションの画面右上にある「Evet Grid サブスクリプションの追加」をクリックします。
 
     ![Add Event Grid subscription](images/add_eventgrid_subscription.png "Add Event Grid subscription")
 
-1. In the menu that opens: enter a Name for the subscription, set the Topic Type to "Storage Accounts", make sure the correct subscription, resource group, and storage account instance are selected. Uncheck the "Subscribe to all event types" box and choose the "Blob Created" type. Lastly, add a suffix filter for .png files and click Create.
+1. サブスクリプションの名前を入力し、「Topic Type」で「Storage Accounts」を選択します。Azure サブスクリプションとリソースグループを選択したら Instance で作成済のブロブストレージを選択します。「Subscribe to all event types」のチェックを外し、明示的に項目一覧より「Blob Created」のみ選択します。最後に「Suffix Filter」に「.png」を指定して「Create」をクリックします。
 
     ![Event Grid blob subscription settings](images/eventgrid_blob_subscription_settings.png "Event Grid blob subscription settings")
 
