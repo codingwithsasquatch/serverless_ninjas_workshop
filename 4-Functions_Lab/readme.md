@@ -110,15 +110,27 @@
 
     ![Create](images/create.png "Create")
 
-1. アプリ名を指定し、リソースグループは既存のグループを選択。ランタイムスタックでは「JavaScript」を選択。その他の OS、ホスティングプランや場所、Application Insights の場所は以下の画面の通り選択して「作成」をクリック。
+1. アプリ名を指定し、リソースグループは既存のグループを選択。ランタイムスタックでは「.NET」または「JavaScript」を選択。その他の OS、ホスティングプランや場所、Application Insights の場所は以下の画面の通り選択して「作成」をクリック。
 
     ![Create Function](images/create_function.png "Create Funcions")
 
 1. 作成が完了したら、通知またはリソースグループより、作成した Function App へ移動。
 
     ![Go to Function](images/goto_function.png "Go to Function")
+    
+1. 「概要」より「プラットフォーム機能」をクリック。
 
-1. 関数を選択し、「新しい機能」をクリックして関数を作成。
+    ![Function Platform Features](images/goto_function_platform.png "Function Platform Features")
+    
+1. 「Function App の設定」をクリック。
+
+    ![Function App Settings](images/goto_function_appsettings.png "Function App Settings")
+    
+1. 「ランタイムバージョン」がバージョン 1.x になっているか確認。2.x になっている場合はバージョンから「~1」をクリック。
+
+    ![Function Runtime](images/function_runtime.png "Function Runtime")
+
+1. 次に関数を作成。画面左側の関数を選択し、「新しい機能」をクリックして関数を作成。
 
     ![New Function](images/new_function.png "New Function")
 
@@ -142,37 +154,37 @@
 
     ![Finish New Function](images/finish_function_settings.png "Finish New Function")
 
-1. Click the integrate link for your function
+1. 左のメニューより「統合」をクリック。
 
     ![Integrate Function](images/integrate_function.png "Integrate Function")
 
-1. Update the parameter name and click save.
+1. 「イベントパラメーター名」を後ほど使うのでコピー。
 
     ![Parameter name](images/integrate_function_parameter_name.png "Parameter name")
 
-1. Click the "New Output" button
+1. 「新しい出力」をクリック。
 
     ![New Output](images/new_function_output.png "New Output")
 
-1. Select the CosmosDb output and click the Select button.
+1. Azure Cosmos DB を選んで、「選択」をクリック。
 
     ![CosmosDB output](images/function_cosmosdb_output.png "CosmosDB Output")
 
-1. Enter a value Document parameter name, this is the object that will be posted to Cosmos DB. Enter a database name and collection name to use and then check the create database and collection check box then click the new button next to the Cosmos DB account connection
+1. ドキュメントパラメーター名を「documents」に変更。このオブジェクトが Cosmos DB に格納される。データベース名とコレクション名もそれぞれ変更後、「True の場合、Azure Cosmos DB のデータベースとコレクションを作成します」チェックボックスをチェック。その後「Azure Cosmos DB アカウント接続」の右にある「新規」をクリック。
 
     ![CosmosDB output](images/function_cosmosdb_settings.png "CosmosDB Output")
 
-1. On the  and select the cosmos db we set up in the previous step
+1. 接続画面で作成した Cosmos DB を選んで、「選択」をクリック。
 
     ![CosmosDB account](images/function_cosmosdb_account.png "CosmosDB account")
 
-1. Then click "Save" and we are ready to start writing our code!
+1. 元の画面で「保存」をクリック。これでコーディングの準備が完了。
 
-1. Click on the name of your function. and the code window will open
+1. 作成した関数名を選択。オンラインのエディタを開く。
 
     ![function name](images/function_name.png "function name")
 
-1. Below is the code we will use to insert the events into Cosmos DB
+1. 以下コードでは、受信したイベントを Cosmos DB に格納する。エディターに張り付けて「保存」をクリック。
 
     ```javascript
     module.exports = function (context, eventHubMessages) {
@@ -207,33 +219,33 @@
     }
     ```
 
-1. Now we can start using it. Click on the function app name
+1. これでファンクションが実行可能。ファンクションを選択して、概要をクリック。
 
     ![function app](images/function_app.png "function app")
 
-1. Click on the Application Insights link
+1. 画面下部にある「構成済の機能」より「Application Insights」をクリック。
 
     ![app insights](images/application_insights.png "app insights")
 
-1. Click the Live Stream button
+1. 左のメニューより「ライブ メトリックス ストリーム」をクリック。
 
     ![app insights live stream](images/app_insights_live_stream.png "app insights live stream")
 
-1. In another new window go to [https://aka.ms/eventgen](https://aka.ms/eventgen) in a web browser
+1. 新しいウィンドウで [https://aka.ms/eventgen](https://aka.ms/eventgen) を開く。このツールよりイベントを送信。
 
-1. Select Event Hub as the messaging service
+1. Event Hub を選択。
 
     ![eventgen event hub](images/eventgen_eventhub.png "eventgen event hub")
 
-1. Paste in the connection string and event hub name you saved earlier
+1. 接続文字列をハブの名前を入力。
 
     ![eventgen event hub settings](images/eventgen_eventhub_settings.png "eventgen event hub settings")
 
-1. Choose Ninja Battle, set the duration to 1 minute, set the frequency to whatever you'd like, and click start!
+1. 「Ninja Battle」を選択し、duration で 1 minute、頻度を任意の数字にして「Start」をクリック。
 
     ![eventgen messages](images/eventgen_messages.png "eventgen messages")
 
-1. Now let's watch the live streaming in Application Insights
+1. 「ライブ メトリックス ストリーム」で処理を確認。
 
     ![app insights live stream](images/app_insights_live_stream_dashboard.png "app insights live stream")
 
@@ -259,7 +271,7 @@
 
     ![Create](images/create.png "Create")
     
-1. 「リソースグループ」より新規作成をクリックして、新しくリソースグループを作成します。
+1. 「リソースグループ」より新規作成をクリックして、新しくリソースグループを作成。
 
     ![ResourceGroup](images/new_resourcegroup.png "RG") 
 
@@ -291,27 +303,27 @@
     
     ![Eventgrid Extension](images/install_eventgrid_extension.png "Install EventGrid Extension")
 
-1. 関数の作成で、「作成」をクリックします。
+1. 関数の作成で、「作成」をクリック。
 
     ![Create Event Grid trigger](images/create_eventgrid_function_trigger.png "Create Event Grid trigger")
 
-1. 次にイベントグリッドのサブスクリプションを作成します。ファンクションの画面右上にある「Evet Grid サブスクリプションの追加」をクリックします。
+1. 次にイベントグリッドのサブスクリプションを作成。ファンクションの画面右上にある「Evet Grid サブスクリプションの追加」をクリック。
 
     ![Add Event Grid subscription](images/add_eventgrid_subscription.png "Add Event Grid subscription")
 
-1. サブスクリプションの名前を入力し、「Topic Type」で「Storage Accounts」を選択します。Azure サブスクリプションとリソースグループを選択したら Instance で作成済のブロブストレージを選択します。「Subscribe to all event types」のチェックを外し、明示的に項目一覧より「Blob Created」のみ選択します。最後に「Suffix Filter」に「.png」を指定して「Create」をクリックします。
+1. サブスクリプションの名前を入力し、「Topic Type」で「Storage Accounts」を選択。Azure サブスクリプションとリソースグループを選択したら Instance で作成済のブロブストレージを選択。「Subscribe to all event types」のチェックを外し、明示的に項目一覧より「Blob Created」のみ選択。最後に「Suffix Filter」に「.png」を指定して「Create」をクリック。
 
     ![Event Grid blob subscription settings](images/eventgrid_blob_subscription_settings.png "Event Grid blob subscription settings")
 
-1. Now let's add an output binding for Cosmos DB, just like we did before with the Event Hub. Click the integrate link for your function
+1. 次に CosmosDB へのバインディングを作成するため、「統合」をクリック。
 
     ![Integrate Event Grid Function](images/integrate_eventgrid_function.png "Integrate Event Grid Function")
 
-1. Click the "New Output" button
+1. 「新しい出力」をクリック。
 
     ![New Output](images/new_eventgrid_function_output.png "New Output")
 
-1. Select the CosmosDb output and click the Select button
+1. 「CosmosDb」を選択。 output and click the Select button
 
     ![CosmosDB output](images/function_eventgrid_cosmosdb_output.png "CosmosDB Output")
 
