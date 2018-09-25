@@ -323,19 +323,19 @@
 
     ![New Output](images/new_eventgrid_function_output.png "New Output")
 
-1. 「CosmosDb」を選択。 output and click the Select button
+1. 「CosmosDb」を選んで「選択」をクリック。
 
     ![CosmosDB output](images/function_eventgrid_cosmosdb_output.png "CosmosDB Output")
 
-1. Update the parameter, database and collection names to use. Select the option to create the database and collection. Finally, click "Save" and we are ready to start writing our code!
+1. 各種パラメーターを以下画面の様に更新して、「保存」をクリック。
 
     ![CosmosDB output](images/function_eventgrid_cosmosdb_settings.png "CosmosDB Output")
 
-1. Click on the name of your function. and the code window will open
+1. 関数を選択してオンラインエディターを開く。
 
     ![function name](images/function_eventgrid_name.png "function name")
 
-1. Below is the code we will use to insert the events into Cosmos DB
+1. 以下のコードでイベントグリッドからのイベントを Cosmos DB に保存。エディターに張り付け、「保存」をクリック。
 
     ```javascript
     module.exports = function (context, eventGridEvent) {        
@@ -359,27 +359,26 @@
     }
     ```
 
-
-1. Now we can start using it. Click on the function app name
+1. これでファンクションが実行可能。ファンクションを選択して、概要をクリック。
 
     ![function app](images/function_app.png "function app")
 
-1. Click on the Application Insights link
+1.  画面下部にある「構成済の機能」より「Application Insights」をクリック。
 
     ![app insights](images/application_insights.png "app insights")
 
-1. Click the Live Stream button
+1. 左のメニューより「ライブ メトリックス ストリーム」をクリック。
 
     ![app insights live stream](images/app_insights_live_stream.png "app insights live stream")
 
-1. In a new window or browser tab, go to the container we created earlier for the storage account and click on the Upload link. You are also welcome to use a tool like [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/)
+1. 別のウィンドウで作成したストレージアカウントに移動し、Blob を選択。手動で画像をアップロード。または [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) を利用。
 
     ![Upload blobs](images/storage_account_container_upload.png "Upload blobs")
 
-1. Upload one or more files, at least a few with the .png extension
+1. 拡張子が png のものをいくつかアップロード。
 
     ![Upload blob](images/storage_account_container_upload_blob.png "Upload blob")
 
-1. Now let's watch the live streaming in Application Insights
+1. Application Insights より状況を確認。
 
     ![app insights live stream](images/app_insight_blobevents.png "app insights live stream")
