@@ -89,3 +89,19 @@
 1. Base URL が呼び出しのアドレスとなる。
 
     ![API Management](images/api_management_base_url.png "API Management")
+
+1. 「Design」タブに戻って「All Operations」下の「POST」をクリック。Frontend に表示されるパスが呼び出し用のパスとなる。
+
+    ![API Management](images/api_management_endpoint_url.png "API Management")
+    
+1. 「開発者ポータル」をクリック。
+
+    ![API Management](images/developer_portal.png "API Management")
+
+1. 画面左の「ADMINISTRATOR」より「PROFILE」をクリック。
+
+    ![API Management](images/developer_portal_profile.png "API Management")
+    
+1. Unlimited サブスクリプションの Primary Key で「Show」ボタンをクリックしてキーを確認。後ほど使うため保存。
+
+    ![API Management](images/developer_key.png "API Management")
