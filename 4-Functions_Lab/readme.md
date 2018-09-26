@@ -1,6 +1,8 @@
-# サーバーレス イベントストリーミング　ハンズオンラボ
+# サーバーレス イベントストリーミング　ハンズオン
 
-## イベントハブからのイベントを処理
+このハンズオンラボでは、イベントハブからのイベント処理と、イベントグリッドからのイベント処理の 2 つのハンズオンを行います。
+
+## 1. イベントハブからのイベントを処理
 
 ![Event Hub Diagram](images/eventhub_diagram.png "Event Hub Diagram")
 
@@ -186,6 +188,7 @@
 
 1. 以下コードでは、受信したイベントを Cosmos DB に格納する。エディターに張り付けて「保存」をクリック。
 
+    JavaScript
     ```javascript
     module.exports = function (context, eventHubMessages) {
         context.log(`JavaScript eventhub trigger function called for message array ${JSON.stringify(eventHubMessages)}`);
@@ -200,7 +203,7 @@
         context.done();
     };
     ```
-
+    C#
     ```csharp
     #r "Newtonsoft.Json"
 
@@ -231,25 +234,77 @@
 
     ![app insights live stream](images/app_insights_live_stream.png "app insights live stream")
 
-1. 新しいウィンドウで [https://aka.ms/eventgen](https://aka.ms/eventgen) を開く。このツールよりイベントを送信。
+### イベントハブにメッセージを送信
 
-1. Event Hub を選択。
+1. 作成済の Function を選択。画面左側の関数を選択し、「新しい機能」をクリックして関数を作成。
 
-    ![eventgen event hub](images/eventgen_eventhub.png "eventgen event hub")
+    ![New Function](images/new_function.png "New Function")
 
-1. 接続文字列をハブの名前を入力。
+1. 検索ボックスに manual を入力して検索。「Manual trigger」を選択。
 
-    ![eventgen event hub settings](images/eventgen_eventhub_settings.png "eventgen event hub settings")
+    ![manual trigger](images/manual_trigger.png "manual trigger")
 
-1. 「Ninja Battle」を選択し、duration で 1 minute、頻度を任意の数字にして「Start」をクリック。
+1. 名前を指定して「作成をクリック]
 
-    ![eventgen messages](images/eventgen_messages.png "eventgen messages")
+    ![Create Manual Trigger](images/create_manual_trigger.png "Create Manual Trigger")
 
-1. 「ライブ メトリックス ストリーム」で処理を確認。
+1. 左のメニューより「統合」をクリック。
 
-    ![app insights live stream](images/app_insights_live_stream_dashboard.png "app insights live stream")
+    ![Manual Trigger Integration](images/manual_trigger_integration.png "Manual Trigger Integration")
 
-## イベントグリッド経由で Blob ストレージイベントを処理
+1. 「新しい出力」をクリック。
+
+    ![New Output](images/new_function_output.png "New Output")
+    
+1. 「Azure Event Hubs」を選択して「選択」をクリック。
+
+    ![Output Event Hubs](images/output_azure_event_hubs.png "Output Event Hubs")
+    
+1. 「イベント パラメーター名」を「output」に、「イベントハブ名」を「serverlessstream」に変更。イベントハブ接続で「新規」をクリック。
+
+    ![Output Event Hubs Settings](images/output_azure_event_hubs_settings.png "Output Event Hubs Settings")
+
+1. 「接続」より、作成した「serverlesssender」ポリシーを指定して「選択」をクリック。その後「保存」をクリック。
+
+    ![Output Event Hubs Connection](images/output_azure_event_hubs_connection.png "Output Event Hubs Connection")
+    
+1. 関数より「GenerateEvent」をクリックしてオンラインエディターを開き、以下のコードを張り付け。
+
+    Javascript
+    ```JavaScript
+    module.exports = function (context, input) {
+        var message = "{'message':'Test Message'}"
+        context.log(message);
+        context.bindings.output = message;
+        context.done();
+    };
+    ```
+    
+    C#
+    ```csharp
+    using System;
+
+    public static void Run(string input, TraceWriter log, out string outputs)
+    {
+        var message = "{'message':'Test Message'}";
+        log.Info(message);
+        outputs = message;
+    }
+    ```
+    
+1. 「保存」をクリック後、「実行」をクリック。何度かメッセージを送りたい場合は複数回クリックを実行。
+
+    ![Execute Function](images/execute_function.png "Execute Function")
+    
+1. リソースグループより Cosmos DB を選択し、「Data Explorer」をクリック。
+
+    ![Data Explorer](images/data_explorer.png "Data Explorer")
+    
+1. eventsCollection を展開し、Documents を選択。レコードが作成されていることを確認。
+
+    ![Data Explorer Result](images/data_explorer_result.png "Data Explorer Result")
+
+## 2. イベントグリッド経由で Blob ストレージイベントを処理
 
 ![Event Grid Diagram](images/eventgrid_lab.png "Event Grid Diagram")
 
@@ -337,6 +392,7 @@
 
 1. 以下のコードでイベントグリッドからのイベントを Cosmos DB に保存。エディターに張り付け、「保存」をクリック。
 
+    JavaScript
     ```javascript
     module.exports = function (context, eventGridEvent) {        
         context.log(eventGridEvent);
@@ -344,7 +400,7 @@
         context.done();
     };
     ```
-
+    C#
     ```csharp
     #r "Newtonsoft.Json"
 
