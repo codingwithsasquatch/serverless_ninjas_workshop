@@ -8,227 +8,200 @@
 
 <b>このラボの開始前に、API Management とロジックアプリを 1 つ、[Logic App Lab Setup](LogicAppLabSetup.md) に沿って作ってください。</b>
 
-## Video of Lab
+## ラボのビデオ
 
-Click image to download video of lab walk-through.
+以下のリンクからラボのウォークスルービデオが取得できます。
 
 [![Logic App Demo Video](images/logic_app_lab_first_frame.png)](logic_app_lab.mp4)
 
-## Create Logic App
+## ロジックアプリの作成
 
-1. Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
-1. Click the New button
+1. Azure ポータルに接続。[https://portal.azure.com](https://portal.azure.com)
+
+1. 「リソースの作成」をクリック。
 
     ![New Button](images/new_button.png "New Button")
 
-1. Type "Logic App" into the search box and select Logic App when it pops up
+1. 検索ボックスに "Logic App" と入力して候補を選択。
 
     ![Logic App](images/logic_app_search.png "Logic App")
 
-1. On the next blade select Logic App
+1. 次の画面で Logic App を選択。
 
     ![Logic App](images/logic_app_result.png "Logic App")
 
-1. Then click "Create"
+1. 「作成」をクリック。
 
     ![Create](images/Create.png "Create")
 
-1. Give it a name, location, and a new Resource Group as our setup.  Then click Create.
+1. 名前を設定し、既存のリソースグループを選択して「作成」をクリック。
 
     ![Create Logic App](images/create_logic_app.png "Create Logic App")
 
-1. When the deployment finishes, we need to create the Logic App. Click on the "go to resource" button of the deployment notification
+1. 作成が完了したら、通知より「リソースに移動」をクリック。
 
     ![Go to Logic App](images/goto_logic_app.png "Go to Logic App")
 
-1. The Logic App opens to a designer page.  You can use a tempate to create a Logic App, and we will be using a Recurrence trigger.  The Recurrence template is located under the "Start with a common trigger secion."  Click on the "Recurrence" tile.
+1. 「ロジック アプリ デザイナー」より「繰り返し」テンプレートを選択。
 
     ![Logic App Template](images/logic_app_template.png "Logic App Template")
 
-Note:  The logic app is starting with a recurrence trigger so that we have a way to activate the Logic App without requiering additional software installation.
+Note: 繰り返しでロジックアプリが起動するため、ロジック起動のための追加の開発やソフトウェアの導入の必要がありません。
 
-1. On the Recurrence trigger, change the interval to 1 minute.
+1. 繰り返しのインターバルを 1 分に変更。
 
     ![Logic App Template](images/logic_app_recurrence.png "Logic App Template")
 
-1. Select New Step and then Add an Action.
+1. 「新しいステップ」をクリック。
 
     ![Add Action](images/add_action.png "Add action")
 
-1. We will now create a variable that will store the JSON message that is uploaded into the Characters CosmosDB.  In the "Choose an action" search box, type "variable".
+1. JSON メッセージを保持するため変数を利用。検索ボックスに「変数」と入力。
 
     ![Logic App Variable](images/logic_app_variable_search.png "Logic App Variable")
 
-1. Under the Actions tab, select "Variables - Initialize variable"
+1. アクションより「変数を初期化する」を選択。
 
     ![Logic App Variable](images/logic_app_initial_variable.png "Logic App Variable")
 
-Note:  Again this step is done so that addition software is not required.  A more realistic implementation would be to accept the message over an HTTP GET trigger.
+Note:  実際には HTTP トリガーの引数などで変数を受け取りますが、ここではロジックアプリ内で変数を作成しています。
 
-1. Enter the name and change the type to "String"
+1. 名前を入力して、種類より「文字列」を選択。
 
     ![Logic App Variable](images/logic_app_initial_variable_type.png "Logic App Variable")
 
-1. In the Value box, have the students copy the JSON message from [CheatSheet.txt](CheatSheet.txt) into the Value.
+1. 「値」に [CheatSheet.txt](CheatSheet.txt) より JSON 部分の値をコピー。
 
     ![Logic App Variable](images/logic_app_variable_body.png "Logic App Variable")
 
-1. Put in a name of the the character, the ID, and two categories.  Emphasize to the students that they need to enter their own information.
+1. 名前と ID、カテゴリに最低 2 つ値を入力。まだデータベースにない、ユニークな値を設定。
 
     ![Logic App Variable](images/logic_app_initial_variable_values.png "Logic App Variable")
 
-1. Put in a name of the the character, the ID, and two categories.  Emphasize to the students that they need to enter their own information.
-
-    ![Logic App Variable](images/logic_app_initial_variable_values.png "Logic App Variable")
-
-1. Select New Step and then Add an Action.
+1. 「新しいステップ」をクリック。
 
     ![Add Action](images/add_action.png "Add action")
 
-Parse JSON is a commonly used action that will take a JSON message and strongly typed the message within the logic app.  The properties within the message can then be used in following actions.
-
-1. In the "Choose an action" search box, type "parse json" with a space.
+1. 検索ボックスに 「json の解析」と入力。
 
     ![Parse JSON](images/logic_app_parsejson_s.png "Parse JSON")
 
-1. Under the Actions tab, select "Data Operations - Parse JSON".
+1. アクションより「JSON の解析」を選択。
 
     ![Parse JSON](images/logic_app_select_parse.png "Parse JSON")
 
-1. Click in the Content text box and select the variable name from the Dynamic content pop out.
+1. コンテンツのテキストボックスを選択し、「動的なコンテンツ」より「charactermessage」を選択。
 
     ![Parse JSON](images/logic_app_parsejson_content.png "Parse JSON")
 
-1. Click the link "Use sample payload to generate schema".
+1. 「サンプルのペイロードを使用してスキーマを生成する」リンクをクリック。
 
     ![Parse Content](images/logic_app_sample_payload.png "Parse Content")
 
-1. Copy the code from [CheatSheet.txt](CheatSheet.txt) and paste it into the editor.  Then press Done.
+1. [CheatSheet.txt](CheatSheet.txt) より再度 JSON 部分をコピーして貼り付け、「完了」をクリック。
 
     ![Schema Editor](images/logic_app_parse_schema.png "Schema Editor")
 
-Next we will search Cosmos DB to verify that the character does not exist.
-
-1. Select New Step and then Add an Action.
+1. 次に Cosmos DB の検索を追加。「新しいステップ」を選択。
 
     ![Add Action](images/add_action.png "Add action")
 
-1. In the "Choose an action" search box, type "cosmos".
+1. 検索ボックスに "cosmos" と入力。
 
     ![Search Cosmos DB](images/logic_app_cosmos_search.png "Search Cosmos DB")
 
-1. Under the Actions tab, scroll in the list and select "Azure Cosmos DB - Query documents".
+1. アクションより「複数のドキュメントにクエリを実行する」を選択。
 
     ![Search Cosmos DB](images/logic_app_cosmos_result.png "Search Cosmos DB")
 
-1. Click on Manually enter connection information.
-
-    ![Search Cosmos DB](images/logic_app_cosmos_manual.png "Search Cosmos DB")
-
-1. Enter a Connection Name, Account ID (stored in [CheatSheet.txt](CheatSheet.txt)), and the Access Key.  Then press Create.
-
-    ![Search Cosmos DB](images/logic_app_cosmos_connection_info.png "Search Cosmos DB")
-
-1. In the drop down box of the Database ID, select the database.
-
-    ![Search Cosmos DB](images/logic_app_cosmos_database.png "Search Cosmos DB")
-
-1. In the drop down box of the Collection ID, select the collection.
-
+1. データベース ID とコレクションの設定。
+   
     ![Search Cosmos DB](images/logic_app_cosmos_collection.png "Search Cosmos DB")
 
-1. In the query type "SELECT * FROM c where c.name ='".
+1. クエリに「SELECT * FROM c where c.name ='」と入力。
 
     ![Search Cosmos DB](images/logic_app_cosmos_select.png "Search Cosmos DB")
 
-1. After the single quote select name from the Dynamic Content Under the Parse JSON.
+1. 検索条件に「動的なコンテンツ」より「name」を指定。
 
     ![Search Cosmos DB](images/logic_app_cosmos_name.png "Search Cosmos DB")
 
-1. Be sure to add the single quote after the name value.
+1. 最後にシングルクォーテーションを追加してクエリを完成。
 
     ![Search Cosmos DB](images/logic_app_cosmos_quote.png "Search Cosmos DB")
 
-1. Select New Step.
+1. 「新しいステップ」を選択。
 
     ![New Step](images/new_step.png "New Step")
 
-1. Then Select Add a Condition.
+1. 「制御」をクリック。
 
     ![Add Condition](images/logic_app_add_condition.png "Add Condition")
 
-1. When the expression editor appears, select _count under the Dynamic content.
+1. 「条件」を選択。
+
+    ![Add Condition](images/logic_app_add_condition_detail.png "Add Condition")
+
+1. 「値の選択」で「動的なコンテンツ」より「_count」を選択。
 
     ![Add Condition](images/logic_app_condition_count.png "Add Condition")
 
-1. In the drop down box, select "is greater than or equal to"
+1. 条件で「次の値以上」を選択し、値の選択で「１」を入力。
 
     ![Add Condition](images/logic_app_condition_value.png "Add Condition")
 
-1. In the value box, enter 1.
-
-    ![Add Condition](images/logic_app_condition_compare.png "Add Condition")
-
-1. Under the If true box, select Add an action.
+1. 「true の場合」で「アクションの追加」をクリック。
 
     ![Add Condition](images/logic_app_true_action.png "Add Condition")
 
-1. In the "Choose an action" search box, type "compose".
+1. 結果用のテキスト作成を行う。検索ボックスに「データ操作」と入力。
 
     ![Search Compose](images/logic_app_compose_search.png "Search Compose")
 
-1. Under the Actions tab, scroll in the list and select "Data Operations - Compose".
+1. アクションより「作成」をクリック。
 
     ![Search Compose](images/logic_app_compose_results.png "Search Compose")
 
-1. In the Inputs box, type a message saying the character already exists.
+1. 入力テキストボックスに、「既にキャラクターが存在します」と入力。
 
     ![Compose](images/logic_app_compose.png "Compose")
 
-Compose is a common action used to create a new message that can be used in the workflow.
-
-1. Under the If false box, select Add an action.
+1. 「false の場合」で「アクションの追加」をクリック。
 
     ![Add Condition](images/logic_app_false_action.png "Add Condition")
 
-1. Under the Connectors, select HTTP.
+1. 「HTTP」を選択。
 
     ![HTTP](images/logic_app_http.png "HTTP")
 
-1. Under the Actions tab, scroll in the list and select "HTTP-HTTP".
+1. アクションより HTTP を選択。
 
     ![Search Compose](images/logic_app_http_http.png "Search Compose")
 
-1. Select the POST method from the Method dropdown list.
+1. 「方法」より「POST」を選択。
 
     ![POST](images/logic_app_http_post.png "POST")
 
-1. In the Headers values, select the "Enter key" text box and type "Ocp-Apim-Subscription-Key".  The information can be found [CheatSheet.txt](CheatSheet.txt)
-
-    ![POST](images/logic_app_api_key.png "POST")
-
-1. In the Headers values, select the "Enter value" text box and paste in the "Ocp-Apim-Subscription-Key" value found in [CheatSheet.txt](CheatSheet.txt)
+1. ヘッダーの値に "Ocp-Apim-Subscription-Key" およびセットアップ時に取得したサブスクリプションキーを入力。※スペースが入らないように注意
 
     ![POST](images/logic_app_api_key_value.png "POST")
 
-1. In the URI field, enter the URI from api-management that can be found found in [CheatSheet.txt](CheatSheet.txt)
+1. URL にセットアップで取得した API Management のベースおよびパスを指定。
 
     ![POST](images/logic_app_http_uri.png "POST")
 
-1. Click in the Body textbox, and select the variable name from the Dynamic Content pop up.
+1. 本文に「動的なコンテンツ」から「charactermessage」を指定。
 
     ![POST](images/logic_app_http_body.png "POST")
 
-1. Save the Logic App.
+1. ロジックアプリを保存。
 
     ![Save Logic App](images/logic_app_save.png "Save Logic App")
 
-1. Run the Logic App.
+1. 「実行」ボタンをクリック。
 
     ![Run Logic App](images/logic_app_run.png "Run Logic App")
 
-1. The students should see the logic app with green check marks.  The false statement should be executed first.  If not, have them change the ID value in the initalize variable.
+1. 実行結果を確認。Cosmos DB に指定したキャラクターがいない場合作成される。
 
     ![Run Logic App](images/logic_app_finished.png "Run Logic App")
-
-At this point the instructure can open Azure Cosmos DB and search for the students character.
