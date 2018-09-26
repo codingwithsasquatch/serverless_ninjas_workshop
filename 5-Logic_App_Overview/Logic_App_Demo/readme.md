@@ -124,7 +124,7 @@ JSON のパースは Logic App でよく利用されるアクションで、パ�
 
     ![Parse JSON](images/logic_app_select_parse.png "Parse JSON")
 
-### Expression Editor    
+### 式エディター    
 
 入力データは JSON フォーマットですが、受信したデータの型は JSON 文字列ではないため、「式」の機能で変換します。
 
