@@ -273,7 +273,7 @@ GUI から選択が困難な場合、コードビューを利用して直接コ�
 
     ![Azure Storage Explorer](images/storage_explorer_container.png "Azure Storage Explorer")
 
-1. [sampleschema.json](setup_data\sampleschema.json) ファイルをローカルにコピーしてアップロード。
+1. [Characters.json](demo_data\characters.json) ファイルをローカルにコピーしてアップロード。
 
     ![Azure Storage Explorer](images/azure_storage_explorer_upload.png "Azure Storage Explorer")
 
