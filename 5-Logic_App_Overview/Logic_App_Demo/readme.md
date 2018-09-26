@@ -298,3 +298,4 @@ GUI から選択が困難な場合、コードビューを利用して直接コ�
 ```sql
 SELECT * FROM c WHERE ARRAY_CONTAINS(c.Attributes.Category, 'Ninjas')
 ```
+    ![Query Result](images/query_result.png "Query Result")
