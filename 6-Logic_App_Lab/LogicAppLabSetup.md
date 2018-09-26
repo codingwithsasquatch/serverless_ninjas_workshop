@@ -1,101 +1,91 @@
-# Serverless Logic Apps Lab Setup
+# サーバーレス ロジックアップ ラボ セットアップ
 
-The following will setup the Logic App that the student will send messages to in the Lab.  This needs to be done at least a day before and can be resused for each delivery of the lab.
+以下の手順でこのラボに必要な環境を構築します。
 
-## Update Deployment template
+## 展開テンプレートの保存
 
-1. Open the [template.json](template.json) file in an editor.
+1. [template.json](template.json) を開きます。
 
-1. Save the template.json file.
+1. ファイルをローカルに保存します。
 
-## Use template to create Logic App and API Management
+## 展開テンプレートを使った環境の構築
 
-1. Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
+1. Azure ポータルに接続。[https://portal.azure.com](https://portal.azure.com)
 
-1. Click the New button
+1. 「リソースの作成」をクリック。
 
     ![New Button](images/new_button.png "New Button")
 
-1. Type "template" into the search box and select Logic App when it pops up
+1. 検索ボックスで "template" と入力して候補より選択。
 
     ![Template](images/template_search.png "Template")
 
-1. On the next blade select Template Deployment
+1. 次の画面で「テンプレートのデプロイ」を選択。
 
     ![Template Deployment](images/template_deployment_results.png "Template Deployment")
 
-1. Then click "Create"
+1. 「作成」をクリック。
 
     ![Create](images/create.png "Create")
 
-1. Select "Build your own template in the editor"
+1. 「エディターで独自のテンプレートを作成する」を選択。
 
     ![Build Template](images/template_build.png "Build Template")
 
-1. Click "Load file"
+1. 「ファイルの読み込み」をクリック。
 
     ![Build Template](images/template_load_file.png "Build Template")
 
-1. Open the [template.json](template.json) file.
+1. [template.json](template.json) を指定。
 
     ![Build Template](images/template_json.png "Build Template")
 
-1. Press Save.
+1. 「保存」をクリック。
 
     ![Build Template](images/template_save.png "Build Template")
 
-1. Press fill in the values, using the same resource group as the demo.
+1. パラメーターを指定。前のラボで作成した情報を再利用。Cosmos DB のキーやデータベース情報などは既存リソースの情報を参照。
 
     ![Build Template](images/template_settings.png "Build Template")
 
-1. Select the terms and agreement check box.
-
-    ![Build Template](images/template_terms.png "Build Template")
-
-1. Select purchase.
+1. 「使用条件」に同意して、「購入」をクリック。※API マネジメントの展開は10分単位で時間がかかる場合があります。コーヒーでも飲みに行きましょう。
 
     ![Build Template](images/template_purchase.png "Build Template")
 
     Note:  API Management can take several minutes to create.
 
-1. When the deployment finishes, we need to verify the Logic App. Click on the "go to resource" button of the deployment notification
+1. 展開完了後、リソースグループより作成されたロジックアプリを選択。
 
-    ![Go to Logic App](images/template_goto_deployment.png "Go to Logic App")
+    ![Logic App](images/create_single_character.png "Logic App")
 
-1. Ensure all values are entered in the CosmosDB action item.
+1. ロジックアップデザイナーより、Cosmos DB に対する接続を確認。
 
-## Create API in API Management
+    ![Logic App Cosmos Settings](images/logic_app_cosmos_db_settings.png "Logic App Cosmos Settings")
 
-1. Browse to the API Management resource.
+## API マネジメントの構成
 
-Note:  API Management can take several minutes to create.
+1. リソースグループより API Management を選択。
 
-1. Open the API Management Resource.
+    ![API Management](images/api_management.png "API Management")
 
-1. From the right hand side of the API Management blade, select "APIs".
+1. "API" メニューをクリック。
 
     ![API Management](images/api_management_apis.png "API Management")
 
-1. Under Add API, select Logic App.
+1. 「Add a new API」より「Logic App」を選択。
 
     ![API Management](images/api_management_logic_app.png "API Management")
 
-1. Browse to the the Logic App just uploaded from the template. The Display Name and name will be populated based on the logic app name.  You can change the values if needed.
+1. 「Browse」をクリックして、作成したロジックアプリを検索。 
 
     ![API Management](images/api_management_create_logic_app.png "API Management")
+    
+1. 「Create」をクリック。
 
-1. Select a the Unlimited option from the Products drop down box.
+    ![API Management](images/api_management_create_logic_app_create.png "API Management")
 
-    ![API Management](images/api_mangement_products.png "API Management")
+1. 「Settings」より「Products」で「Unlimited」を選択して「Save」をクリック。
 
-1. Select Create.
-
-    ![API Management](images/api_management_create.png "API Management")
-
-1. Select the settings tab.
-
-    ![API Management](images/api_management_settings.png "API Management")
-
-1. Make note of the Base URL.  This URL will be given to the students.  Updating a file on Git, or writing the URL on the board.
+1. Base URL が呼び出しのアドレスとなる。
 
     ![API Management](images/api_management_base_url.png "API Management")
