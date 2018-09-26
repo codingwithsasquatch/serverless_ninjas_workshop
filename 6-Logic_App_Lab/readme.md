@@ -1,14 +1,12 @@
-# Serverless Logic Apps Hands On Lab
+# サーバーレス ロジックアップ ハンズオンラボ
 
-In this lab, students will create a logic app that sends a single json message of a character of the student's choosing.
+このラボでは、選択したキャラクターの情報を送信するロジックアップを作成します。
 
-The logic app searches through CosmosDB to determine if the character already exists and if not sends the message to another Logic App using HTTP.  The message is then saved into CosmosDB and a response is returned to the student.
-
-We wrap up the lab by searching for a user's character in Cosmos DB.
+ロジックアプリは Cosmos DB を検索した後、キャラクターが存在を確認して、その有無に応じて処理を行います。メッセージは Cosmos DB に保存されユーザーに応答が戻ります。
 
 ![Logic App Diagram](images/Logic_App_Diagram.png "Logic App Diagram")
 
-<b>This Lab builds on the Logic App Demo.  Before you start the lab you must create the API Management and SingleCharacerProcess Logic App found in the walk-through [Logic App Lab Setup](LogicAppLabSetup.md).</b>
+<b>このラボの開始前に、API Management とロジックアプリを 1 つ、[Logic App Lab Setup](LogicAppLabSetup.md) に沿って作ってください。</b>
 
 ## Video of Lab
 
