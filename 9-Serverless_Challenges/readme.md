@@ -1,18 +1,18 @@
-# Serverless Ninjas Challenge
+# サーバーレス NINJA チャンレジ
 
-## Overview
+## 概要
 
-Ninjas, LLC. would like to provide their partners with the ability to order products online. They have been given the directive to leverage the Serverless offerings in Azure as much as possible.
+Ninjas, LLC. はパートナー向けにオンラインで商品を販売したいと考えています。また開発にあたり Azure のサーバーレスソリューションを極力使うよう指示が出ています。
 
-## Requirements
+## 要件
 
-In this challenge, you are tasked with building a solution that helps launch this new offering. To support this endeavor, you will be given a set of APIs that will manage their inventory of products and must complete the remaining functionality.
+このチャレンジでは上記概要を満たすソリューションを開発します。開発にあたり、必要となる API や商品情報が提供されます。
 
-The following requirements must be met to complete the challenge:
+チャンレジを完了するには以下の要件を満たす必要があります。
 
-1) Provide an HTTP endpoint that can be used to place an order.
+1) 商品の発注ができる以下 HTTP エンドポイントの提供
 
-   * Sample request body:
+   * リクエスト本文のサンプル:
 
          {
             "id": "2",
@@ -21,63 +21,62 @@ The following requirements must be met to complete the challenge:
             "email": "customer@contoso.com"
          }
 
-2) After an order is placed, decrement the inventory count.
+2) 発注が作成されたら、在庫の引き当てをします。
 
-3) Notify the partner, with an email, that the order has been received.
+3) 電子メールでパートナーに発注を受領した旨を伝えます。
 
-   * If there is enough inventory to fulfill the order, notify them that it will be shipped within 5 business days.
-   * If there is not enough inventory to fulfill the order, notify them that it will be shipped within 10 business days.
+   * 在庫がある場合は 5 営業日以内に発送する旨を伝えます。
+   * 在庫が不足している場合は、10 営業日以内に発送する旨を伝えます。
 
-4) If the inventory count for a product is low, initiate a process that will restock the product.
+4) もし在庫が少なくなった場合、商品の仕入れ処理を自動で行います。
 
-The solution can include any combination of Azure Functions, Logic Apps and Event Grid. Other services, such as Storage, might be included in order to complete the challenge. 
+ソリューションは Azure Functions、ロジックアプリ、およびイベントグリッドを自由に組み合わせて使ってください。また必要に応じて Azure ストレージ等他のサービスも利用してください。
 
-## APIs
+## API
 
-A collection of APIs are provided to support the solution. Authorization is handled with an API key that can be passed into the header of each request. 
+ソリューションをサポートするための API が提供されます。認証は API キーを HTTP 要求ヘッダーに設定する必要があります。
+インストラクターおよびメンターが当日キーの情報を提供します。
 
-The proctor or instructor will provide the key at the time of the exercise.
+1) 商品の詳細を取得 (名前と在庫数)
 
-1) Get details about a product (name and inventory count):
-
-   * Method: GET
-   * Headers: x-functions-key
+   * HTTP メソッド: GET
+   * ヘッダー: x-functions-key
    * URL: https://ninjachallenge{challenge-number}.azurewebsites.net/api/details/{id}
-   * Example: https://ninjachallenge{challenge-number}.azurewebsites.net/api/details/2?code={api-key}
+   * 例: https://ninjachallenge{challenge-number}.azurewebsites.net/api/details/2?code={api-key}
    * CURL: curl --header "x-functions-key: {api-key}" https://ninjachallenge{challenge-number}.azurewebsites.net/api/details/2
 
-2) Restock a product:
+2) 在庫の補充:
 
-   * Method: POST
-   * Headers: x-functions-key
+   * HTTP メソッド: POST
+   * ヘッダー: x-functions-key
    * URL: https://ninjachallenge{challenge-number}.azurewebsites.net/api/add/{id}/{count}
-   * Example: https://ninjachallenge{challenge-number}.azurewebsites.net/api/add/1/10?code={api-key}
+   * 例: https://ninjachallenge{challenge-number}.azurewebsites.net/api/add/1/10?code={api-key}
    * CURL: curl -d "" -H "x-functions-key: {api-key}" -X POST https://ninjachallenge{challenge-number}.azurewebsites.net/api/add/1/10
 
-3) Decrement the product count:
+3) 在庫の引き当て:
 
-   * Method: POST
-   * Headers: x-functions-key
+   * HTTP メソッド: POST
+   * ヘッダー: x-functions-key
    * URL: https://ninjachallenge{challenge-number}.azurewebsites.net/api/remove/{id}/{count}
-   * Example: https://ninjachallenge{challenge-number}.azurewebsites.net/api/remove/1/10?code={api-key}
+   * 例: https://ninjachallenge{challenge-number}.azurewebsites.net/api/remove/1/10?code={api-key}
    * CURL: curl -d "" -H "x-functions-key: {api-key}" -X POST https://ninjachallenge{challenge-number}.azurewebsites.net/api/remove/1/10
 
-4) Get a list of products:
+4) 商品一覧の取得:
 
-   * Method: GET
+   * HTTP メソッド: GET
+   * ヘッダー: x-functions-key
    * URL: https://ninjachallenge{challenge-number}.azurewebsites.net/api/list
-   * Headers: x-functions-key
-   * Example: https://ninjachallenge{challenge-number}.azurewebsites.net/api/list?code={api-key}
+   * 例: https://ninjachallenge{challenge-number}.azurewebsites.net/api/list?code={api-key}
    * CURL: curl --header "x-functions-key: {api-key}" https://ninjachallenge{challenge-number}.azurewebsites.net/api/list
 
-## Suggestions
+## ヒント
 
-* Consider the logical architecture first.
-* Review the use cases and requirements before services and physical design of the solution.
-* Leverage the strengths of each service.
-* Use the provided APIs to manage the product inventory.
+* 論理アーキテクチャをまず検討する。
+* サービスやソリューションのアーキテクチャを検討する前に、ユースケースと要件を確認する。
+* 各サービスの強みを活用する。
+* 提供された API を使って在庫を管理する。
 
-## References
+## 参照
 
 * [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview "Azure Functions")
 * [Logic Apps](https://docs.microsoft.com/en-us/azure/logic-apps/ "Azure Logic Apps")
