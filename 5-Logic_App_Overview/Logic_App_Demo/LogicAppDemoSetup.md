@@ -118,7 +118,6 @@ Logic App を起動するトリガーとしてファイルのアップロード�
 ## 統合アカウントの作成
 
 1.  Azure ポータルに接続。https://portal.azure.com
-
 1.「リソースの作成」をクリック。
 
     ![New Button](images/new_button.png "New Button")
