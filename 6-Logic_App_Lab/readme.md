@@ -32,7 +32,7 @@
 
 1. 「作成」をクリック。
 
-    ![Create](images/reate.png "Create")
+    ![Create](images/create.png "Create")
 
 1. 名前を設定し、既存のリソースグループを選択して「作成」をクリック。
 
