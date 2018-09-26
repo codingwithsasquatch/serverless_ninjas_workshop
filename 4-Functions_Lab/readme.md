@@ -58,10 +58,6 @@
 
     ![SAS Settings](images/event_hub_sas_properties.png "SAS Settings")
 
-1. 後で利用するため、作成されたポリシーをクリックして、「接続文字列　- 主キー」の値とポリシーの名前をどこかに保存。
-
-    ![SAS Connection String](images/event_hub_connection_string.png "SAS Connection String")
-
 ### CosmosDB の作成
 
 イベントハブは作成したので、次にハブからのメッセージを保存する CosmosDB を作成します。
