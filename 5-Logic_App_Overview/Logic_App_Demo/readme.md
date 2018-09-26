@@ -295,7 +295,7 @@ GUI から選択が困難な場合、コードビューを利用して直接コ�
 
     ![Run Logic App](images/logic_app_run_details.png "Run Logic App")
 
-1. You can now open Cosmos DB and use the Data Explorer to search for all ninjas in the database.  The following SQL Statement will return all results with a category of Ninjas.
+1. Cosmos DB に接続して、「Data Explorer」より以下クエリにてデータを確認。
 
 ```sql
 SELECT * FROM c WHERE ARRAY_CONTAINS(c.Attributes.Category, 'Ninjas')
