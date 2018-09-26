@@ -60,11 +60,9 @@ Note: 繰り返しでロジックアプリが起動するため、ロジック�
 
     ![Logic App Variable](images/logic_app_variable_search.png "Logic App Variable")
 
-1. アクションより「変数を初期化する」を選択。
+1. アクションより「変数を初期化する」を選択。※実際には HTTP トリガーの引数などで変数を受ける場合が多い。
 
     ![Logic App Variable](images/logic_app_initial_variable.png "Logic App Variable")
-
-Note:  実際には HTTP トリガーの引数などで変数を受け取りますが、ここではロジックアプリ内で変数を作成しています。
 
 1. 名前を入力して、種類より「文字列」を選択。
 
