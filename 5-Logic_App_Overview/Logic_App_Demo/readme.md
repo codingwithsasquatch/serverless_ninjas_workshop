@@ -21,9 +21,7 @@
 このデモでは [Azure ストレージエクスプローラー](https://azure.microsoft.com/en-us/features/storage-explorer/) を使います。必須ではありませんが是非利用してください。ツールにログインする際は、環境構築で使ったアカウントを利用してください。
 
 ## Logic App の作成
-
-1. Azure ポータルに接続。https://portal.azure.com
-
+1. Azure ポータルに接続。 [https://portal.azure.com](https://portal.azure.com)
 1.「リソースの作成」をクリック。
 
     ![New Button](images/new_button.png "New Button")
