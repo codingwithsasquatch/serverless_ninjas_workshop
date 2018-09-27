@@ -58,7 +58,7 @@
 
     ![Logic App](images/create_single_character.png "Logic App")
 
-1. ロジックアップデザイナーより、Cosmos DB に対する接続を確認。
+1. ロジックアップデザイナーより、Cosmos DB の項目を展開し、テンプレートで指定したデータベース ID とコレクション ID が指定されていること、および接続情報を確認。異なる場合は「接続を変更してください」より変更。
 
     ![Logic App Cosmos Settings](images/logic_app_cosmos_db_settings.png "Logic App Cosmos Settings")
 
