@@ -1,9 +1,9 @@
-# サーバーレス Logic App デモ環境セットアップ
+# サーバーレス ロジックアプリ デモ環境セットアップ
 
 セットアップ対象:  Azure ストレージアカウント、Cosmos DB、Azure Search
-デモ実施の前に行ってください。
+デモ実施の前に、以下の手順で環境を構築してください。
 
-## Deployment テンプレートの更新
+## Deployment テンプレートの取得
 
 1. [deployment.json](deployment.json) ファイルをエディターで開く。
 
