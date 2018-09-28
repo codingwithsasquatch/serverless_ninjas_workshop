@@ -280,11 +280,11 @@
     ```csharp
     using System;
 
-    public static void Run(string input, TraceWriter log, out string outputs)
+    public static void Run(string input, TraceWriter log, out string output)
     {
         var message = "{'message':'Test Message'}";
         log.Info(message);
-        outputs = message;
+        output = message;
     }
     ```
     
