@@ -146,7 +146,7 @@ This demo uses the Azure Storage Explorer [https://azure.microsoft.com/en-us/fea
 
     The sample schema is just the first two characters within the characters.json file.  You could also copy the first two characters from the file, remove the last "," and then add a "]" to create a valid JSON format.
 
-    ![Schema Editor](../images/logic_app_parse_schema2.png "Schema Editor")
+    ![Schema Editor](../images/logic_app_parse_schema2.PNG "Schema Editor")
 
 ## Send Data to CosmosDB
 
