@@ -83,9 +83,9 @@ This demo uses the Azure Storage Explorer [https://azure.microsoft.com/en-us/fea
 
     The Azure Storage Blob trigger just notifies the Logic App that there is a blob that was put in the container.  It does not get the content.  We now need to get the content.
 
-1. Select New Step and then Add an Action.
+1. Select New Step.
 
-    ![Add Action](../images/add_action.png "Add action")
+    ![New Step](../images/new_step.png "New Step")
 
 1. In the "Choose an action" search box, type blob.
 
@@ -103,9 +103,9 @@ This demo uses the Azure Storage Explorer [https://azure.microsoft.com/en-us/fea
 
     Parse JSON is a commonly used action that will take a JSON message and strongly typed the message within the logic app.  The properties within the message can then be used in following actions.
 
-1. Select New Step and then Add an Action.
+1. Select New Step.
 
-    ![Add Action](../images/add_action.png "Add action")
+    ![New Step](../images/new_step.png "New Step")
 
 1. In the "Choose an action" search box, type "parse json" with a space.
 
@@ -144,19 +144,21 @@ This demo uses the Azure Storage Explorer [https://azure.microsoft.com/en-us/fea
 
 1. Copy the code from [sampleschema.json](setup_data/sampleschema.json) and paste it into the editor.  Then press Done.
 
-    ![Schema Editor](../images/logic_app_parse_schema.png "Schema Editor")
+    The sample schema is just the first two characters within the characters.json file.  You could also copy the first two characters from the file, remove the last "," and then add a "]" to create a valid JSON format.
+
+    ![Schema Editor](../images/logic_app_parse_schema2.png "Schema Editor")
 
 ## Send Data to CosmosDB
 
 The following steps will add the characters to the CosmosDB database.
 
-In order to save the characters in the correct format we must first parse the text of the JSON to split by the pipeline character.  The pre-created Attribute function will be used to perform this action.
+In order to save the characters in the correct format we must first parse the text of the JSON to format the character attributes into a valid JSON format.  The pre-created ConvertAttribute function will be used to perform this action.
 
 ### Add Azure Function
 
-1. Select New Step and then Add an Action.
+1. Select New Step.
 
-    ![Add Action](../images/add_action.png "Add action")
+    ![New Step](../images/new_step.png "New Step")
 
 1. In the "Choose an action" search box, type "azure function".
 
@@ -170,58 +172,17 @@ In order to save the characters in the correct format we must first parse the te
 
     ![Azure Function](../images/logic_app_select_specific_function.png "Azure Function")
 
-1. Next under the Actions tab, select Azure - Functions - <b>function name</b>.
+1. Next under the Actions tab, select Azure - Functions - <b>function name</b>.  Note it can take a few seconds for the Function names to appear.
 
-    ![Azure Function](../images/logic_app_function_format_attributes.png "Azure Function")
+    ![Azure Function](../images/logic_app_function_convert_attributes.png "Azure Function")
 
-1. Click in the Request Body text box.  Under Dynamic content, scroll and select text.
+1. Click in the Request Body text box.  Under Dynamic content, scroll and select "key-body-output-Item".
 
-    ![Azure Function](../images/logic_app_function_body.png "Azure Function")
+    ![Azure Function](../images/logic_app_function_body2.png "Azure Function")
 
-    A foreach loop will be created with mediawiki as the output.
+    A foreach loop will be created with Body as the output.
 
-    ![Azure Function](../images/logic_app_foreach.png "Azure Function")
-
-### Liquid Map
-
-    The text property has now been formatted into a json property.  We need to use a liquid map to take two json messages and format it into a single message.  We will need to save the logic app and associate the Integration account.
-
-1. Scroll to the bottom of the logic app and within the foreach, select Add an Action
-
-    ![Add Action](../images/logic_app_foreach_action.png "Add Action")
-
-1. In the "Choose an action" search box, type "liquid".
-
-    ![Liquid](../images/logic_app_liquid_search.png "Liquid")
-
-1. Under the Actions tab, select "Liquid- Transform JSON to JSON".
-
-    ![Liquid](../images/logic_app_liquid_json_json.png "Liquid")
-
-1. In the drop down box of the Map, select the map stored in the Integration Account.
-
-    ![Liquid](../images/logic_app_map.png "Liquid")
-
-### Code View
-
-    Code view allows the developer to type a Logic App Expression directly into the JSON file.  We are going to enter an expression that will take the current JSON message of the character and combine it with the output of the liquid map.
-
-1. Select the content textbox, then select the Code view button at the top of the page.
-
-    ![Code View](../images/logic_app_code_view.png "Code View")
-
-
-1. Find the content line of the Transform action.  Enter the following code:
-
-```logic app code
-@addProperty(items('For_each'), 'attributes', body('FormatAttributes'))
-```
-
-![Code View](../images/logic_app_transform_content.png "Code View")
-
-1. Press Designer at the top of the page.
-
-    ![Designer](../images/logic_app_designer.png "Designer")
+    ![Azure Function](../images/logic_app_foreach2.png "Azure Function")
 
 ### Cosmos DB Connection
 
@@ -245,9 +206,9 @@ In order to save the characters in the correct format we must first parse the te
 
     ![CosmosDB](../images/logic_app_cosmos_values.png "CosmosDB")
 
-1. Click in the Document text box and select Transformed content from the dynamic content tab.
+1. Click in the Document text box and select Body content from the dynamic content tab.
 
-    ![CosmosDB](../images/logic_app_cosmos_data.png "CosmosDB")
+    ![CosmosDB](../images/logic_app_cosmos_data2.png "CosmosDB")
 
 ## Run Demo
 
@@ -285,9 +246,7 @@ In order to save the characters in the correct format we must first parse the te
 
 1. Click the succeed message.
 
-1. On the run details screen, quickly show the green check marks on the actions.  Then select one of the actions in the For each loop.  Show the input and output messages.  (Note, actions outside of the foreach loop will require the message to be downloaded)
-
-    ![Run Logic App](../images/logic_app_run_details.png "Run Logic App")
+1. On the run details screen, quickly show the green check marks on the actions.  Then select one of the actions in the For each loop.  Show the input and output messages.
 
 1. You can now open Cosmos DB and use the Data Explorer to search for all ninjas in the database.  The following SQL Statement will return all results with a category of Ninjas.
 

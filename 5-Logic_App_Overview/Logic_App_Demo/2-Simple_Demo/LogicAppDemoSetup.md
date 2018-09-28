@@ -1,4 +1,5 @@
-<b> As of 9/28/2018 this section is still a work in progress<b>
+<b> As of 9/28/2018 this section is still a work in progress.  While working, the deployment script needs to be updated to install the convert_attributes_function</b>
+
 # Serverless Logic Apps Demo Setup
 
 Setup:  Create Azure Storage Account, CosmosDB, Azure Search
@@ -117,51 +118,5 @@ Now that we have an storage account let's create an instance of CosmosDB where t
 1. Copy the code from [attributemapfunction.txt](setup_data/attributemapfunction.txt) into the run.csx editor.  Press Save.
 
     ![Add Function Code](../images/function_code.png "Add Function Code")
-
-## Create Integration Account
-
-1. Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
-
-1. Click the New button
-
-    ![New Button](../images/new_button.png "New Button")
-
-1. Type "integration account" into the search box and select Integration when it pops up
-
-    ![Integration Account](../images/integration_account_save.png "Integration Account")
-
-1. On the next blade select Integration account
-
-    ![Integration Account](../images/logic_app_integration_account_result.png "Integration Account")
-
-1. Then click "Create"
-
-    ![Create](../images/create.png "Create")
-
-1. On the next screen select a  name for your Integration Account (confirm with checkmark), again let's use the same existing Resource Group as our Storage Account just to keep everything organized, select a pricing tier and location. Then click "Create"
-
-    ![Integration Account](../images/logic_app_new_integration_account.png "Integration Account")
-
-1. When the deployment finishes, we can start writing our function's code. Click on the "go to resource" button of the deployment notification
-
-    ![Go to Integration Account](../images/integration_account_goto.png "Go to Integration Account")
-
-1. When the Integration Account opens, select the Maps tile.
-
-    ![Maps](../images/integration_account_maps.png "Maps")
-
-1. In the Maps blade, select Add.
-
-    ![Maps](../images/integration_account_add_maps.png "Maps")
-
-1. On the next blade, start by changing the Map type to liquid.
-
-    ![Maps](../images/integration_account_map_type.png "Maps")
-
-1. Be sure to create a local copy of the liquid map, [TransformCharacters.liquid](setup_data/TransformCharacters.liquid)
-
-1. Enter a name and browse to the local copy of the TransformCharacters.liquid file.  The press OK.
-
-    ![Maps](../images/integration_account_add_liquid.png "Maps")
 
 The setup steps are now complete.

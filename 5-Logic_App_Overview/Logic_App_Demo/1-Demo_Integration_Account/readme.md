@@ -99,9 +99,9 @@ This demo uses the Azure Storage Explorer [https://azure.microsoft.com/en-us/fea
 
     The Azure Storage Blob trigger just notifies the Logic App that there is a blob that was put in the container.  It does not get the content.  We now need to get the content.
 
-1. Select New Step and then Add an Action.
+1. Select New Step.
 
-    ![Add Action](../images/add_action.png "Add action")
+    ![New Step](../images/new_step.png "New Step")
 
 1. In the "Choose an action" search box, type blob.
 
@@ -119,9 +119,9 @@ This demo uses the Azure Storage Explorer [https://azure.microsoft.com/en-us/fea
 
     Parse JSON is a commonly used action that will take a JSON message and strongly typed the message within the logic app.  The properties within the message can then be used in following actions.
 
-1. Select New Step and then Add an Action.
+1. Select New Step.
 
-    ![Add Action](../images/add_action.png "Add action")
+    ![New Step](../images/new_step.png "New Step")
 
 1. In the "Choose an action" search box, type "parse json" with a space.
 
@@ -170,9 +170,9 @@ In order to save the characters in the correct format we must first parse the te
 
 ### Add Azure Function
 
-1. Select New Step and then Add an Action.
+1. Select New Step.
 
-    ![Add Action](../images/add_action.png "Add action")
+    ![New Step](../images/new_step.png "New Step")
 
 1. In the "Choose an action" search box, type "azure function".
 

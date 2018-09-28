@@ -6,4 +6,4 @@ There are two different Logic App demos, one that uses an Integration Account an
 
 1. [Integration Account Demo](1-Demo_Integration_Account/readme.md)
 
-1.  Simple Demo (not yet complete)
+1. [Simple Demo](2-Simple_Demo/readme.md) (setup not yet complete)
