@@ -1,36 +1,34 @@
-# Azure Serverless Ninjas Workshop
+# Azure サーバーレス NINJA ワークショップ
 
 ![Azure Serverless Workshop](workshop.png "Azure Serverless Workshop")
 
-## Overview
+## 概要
 
-We are delighted to invite you to participate in an exclusive Microsoft event: Azure Functions, Event Grid, and Logic Apps Serverless Ninjas Workshop
+マイクロソフトが提供する **Azure Functions、Event Grid、および Logic Apps** サーバーレス NINJA ワークショップへようこそ！
 
-Developers are looking to leverage the new paradigm of serverless architectures: scalable and reliable event based compute experience for code and workflows, which accelerate the development of applications while simplifying the infrastructure, providing auto-scale and micro-billing, using technologies like Functions, Event Grid and Logic Apps
+開発者は、Function や Event Grid および Logic Apps といった、最近流行りの **サーバーレス** 技術を利用することで、自動的にスケールし、実行した分だけ課金されるインフラ上で、コーディングに専念したり、簡単にワークフロー開発が行えることを期待しています。このワークショップはハンズオン形式て提供されるため、実際にこれらの技術がどのように利用できるかを効率よく学ぶことが出来ます。
 
-Because of the hands-on nature of the event there is limited space in the Serverless-palooza; register to reserve your spot.
+## 参加要件
 
-## Target Audience
+- 技術者。(※Azure およびサーバーレスに興味があればどなたでも参加可能です。)
+- クラウド上でサーバーレスアーキテクチャを構築する計画がある方や、ビジネスプロセスを自動化することに興味がある方。
 
-- This event is for technical roles however anyone interested in learning more about Azure and Serverless functionality is welcome to attend.
-- Especially beneficial to those that work with organizations who are planning to build Serverless architectures on the cloud or organizations planning to automate business processes.
+## 前提条件
 
-## Requirements
+Azure サブスクリプションまたは任意のリソースグループに対して、所有者またはコントリビューターロールがあること。
 
-You must have access to either an Azure Subscription or Resource Group that you are either an Owner or Contributor role.
+## アジェンダ
 
-## Agenda
-
-| From     | To       | Session                                     |
+| 開始時間 | 終了時間  | セッション                                  |
 |----------|----------|---------------------------------------------|
-| 8:30 AM  | 9:00 AM  | Check-in                                    |
-| 9:00 AM  | 9:15 AM  | Intros and Overview                         |
-| 9:15 AM  | 9:45 AM  | Azure Functions Overview                    |
-| 9:45 AM  | 10:00 AM | Event Grid Overview                         |
-| 10:00 AM | 10:15 AM | Break                                       |
-| 10:15 AM | 11:15 AM | Functions and Event Grid Instructor-Led Lab |
-| 11:15 AM | 11:45 AM | Azure Logic Apps Overview                   |
-| 11:45 AM | 12:45 PM | Break                                       |
-| 12:45 PM | 1:45 PM  | Azure Logic Instructor-Led Lab              |
-| 1:45 PM  | 3:30 PM  | Group Code Challenge                        |
-| 3:30 PM  | 3:30 PM  | Wrap Up                                     |
+| 8:30 AM  | 9:00 AM  | チェックイン                                    |
+| 9:00 AM  | 9:15 AM  | イントロと概要                         |
+| 9:15 AM  | 9:45 AM  | Azure Functions の概要                    |
+| 9:45 AM  | 10:00 AM | Event Grid の概要                      |
+| 10:00 AM | 10:15 AM | 休憩                                   |
+| 10:15 AM | 11:15 AM | Functions と Event Grid について、インストラクター付きのハンズオン|
+| 11:15 AM | 11:45 AM | Azure Logic Apps 概要                   |
+| 11:45 AM | 12:45 PM | 休憩                                       |
+| 12:45 PM | 1:45 PM  | Azure Logic について、インストラクター付きのハンズオン              |
+| 1:45 PM  | 3:30 PM  | グループでのコードチャレンジ                        |
+| 3:30 PM  | 3:30 PM  | まとめ                                    |

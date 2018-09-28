@@ -1,138 +1,104 @@
-# Durable Functions Hands-On Lab
+# Durable Functions ハンズオン ラボ
 
-## Azure Portal Experience
+## Azure ポータルで Durable Functions
 
 ![Architecture Diagram](images/architecture.png "Architecture Diagram")
 
-### Create Funcitons App
+### Funciton の作成
 
- Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
-1. Click the New button
+1. Azure ポータルへ接続。[https://portal.azure.com](https://portal.azure.com)
+
+1. 「リソースの作成」をクリック。
 
     ![New Button](images/new_button.png "New Button")
 
-1. Type `azure functions` into the search box and select Event Hub when it pops up
+1. 検索ボックスで function app と入力して候補を選択。
 
     ![Function App](images/function_search.png "Function App")
 
-1. On the next blade select Function App
+1. 次の画面で Function App を選択。
 
     ![Function App](images/function.png "Function App")
 
-1. Then click `Create`
+1. 「作成」をクリック。
 
     ![Create](images/create.png "Create")
 
-1. On the next screen select an unique name for your function app (confirm with checkmark), create new resource group, keep consumption plan selected for the hosting plan, and make sure you choose `On` for Application Insights and then click `Create`
+1. 名前を付け、新規のリソースグループを指定。また「ランタイムスタック」は「.NET」を指定して「作成」をクリック。
 
-### Modify Settings
+    ![Create App](images/create_function_app.png "Create App")
 
-Durable Functions are available in the Azure portal only after migrating to version 2 of the Azure Function Runtime. Version 2 is still in Preview. Please follow the instructions below.
+### Durable Functions を作成
 
-1. After the app is created you can access it via the Funcitons button in the left menu
+このセクションでは実際に Durable Functions を作成します。
 
-     ![Functions Menu](images/left-menu-smaller.png "Functions Menu")
+1. 作成した Function App を選択して、左の関数をクリック。「新しい機能」をクリック。
 
-2. From the list select the funciton app you created and then select Function app settings
-   
-     ![Functions App Details Screen](images/details-screen.PNG "Functions App Details Screen")
+     ![Create new function](images/create-new-function.png "Create new function")
 
-3. Next, select `~2 (Preview)` for Runtime version. This will migrate the Functions runtime to version 2
+1. 「Durable Functions HTTP starter」を選択。
+
+     ![Http Starter](images/http-starter.png "Http Starter")
+
+1. 拡張機能がインストールされていない場合は「インストール」をクリック。
+
+    ![Durable Functions extension required](images/install-extension.png "Durable Functions extension required")
+
+1. インストール完了後、「続行」をクリック。
+
+    ![Installation successful](images/extension-insalled.png "Installation successful")
+
+1. 名前を付けて「作成」をクリック。
+
+    ![Create Http Start function](images/http-start-new-function.png "Create Http Start function")
+
+1. テンプレートは HTTP リクエストからトリガーされるオーケストレーションコードを含んでいる。
+
+    ![Http Start code](images/http-start-code.png "Http Start code")
+
+1. 次に Activity Function を作成。再度「新しい機能」より「Durable Functions activity」を選択。
+
+    ![Create activity function](images/create-activity-function-details-screen.png "Create activity function")
+
+1. 名前を付けて「作成」をクリック。
+
+    ![Select activity function](images/create-activity-function-main-screen.png "Select activity function")
+
+1. 自動生成されるコードは、名前に Hello を付けるだけのシンプルなサンプル。 
+
+    ![Activity code](images/activity-code.png "Activity code")
+
+1. 最後にオーケストレーターを追加。再度「新しい機能」より「Durable Functions orchestrator」を選択。
+
+    ![Orchestrator](images/orchestrator.png "Orchestrator")
+
+1. 名前を付けて「作成」をクリック。
+
+    ![Orchestrator Creation Screen](images/create-orchestrator-main-screen.png "Orchestrator Creation Screen")
+
+1. オーケストレーターでは複数回 Hello 関数を呼ぶコードが自動で生成される。
+
+    ![Orchestrator Code](images/orchestrator-code.png "Orchestrator Code")
+
+### Durable Functions のテスト
+
+このセクションでは上記で作成した Durable Functions 
+
+1. 関数の一覧より HttpStart を選択して、「テスト」タブをクリック。functionName クエリに "Orchestrator" を引数として設定して「実行」をクリック。
     
-    ![Migrate to Version 2](images/function-app-settings.PNG "Migrate to Version 2")
+    ![Test Durable Function](images/test-orchestrator.png "Test Durable Function")
 
-### Create Durable Functions
+1. 出力に表示された JSON より statusQueryGetUri の項目で Durable Functions の内容を確認。
 
-In this section we will create the Durable Functions.
+    ![JSON output](images/testing-response-links.png "JSON output")
 
-1. Select the function app from the left menu and create a new function
+3. リンクを Postman やブラウザなどで実行し結果を確認。
 
-     ![Create new function](images/create-new-function.PNG "Create new function")
+    ![Orchestrator JSON output](images/actual-response-json.png "Orchestrator JSON output")
 
-2. Pick the Custom function option
+これでまず初めのラボは完了です。
 
-    ![Create custom function](images/create-custom-function.PNG "Create custom function")
-
-3. From the scenario dropdown select Durable Functions
-
-    ![Durable Functions scenario](images/durable-functions-scenario.PNG "Durable Functions scenario")
-
-4. We will need to create one of each Durable Functions types but let's start with Http Starter
-
-     ![Http Starter](images/http-starter.PNG "Http Starter")
-
-5. Since this is the first Durable Function under the Function app, an extension should be installed
-
-    ![Durable Functions extension required](images/install-extension.PNG "Durable Functions extension required")
-
-6. After pressing the install button it will take less than 2 minutes to complete
-
-    ![Extension installation](images/extension-installation.PNG "Extension installation")
-
-7. Press continue after the succesful installation
-
-    ![Installation successful](images/extension-insalled.PNG "Installation successful")
-
-8. Let's complete the creation of the Http Start function and call it `HttpStart`
-
-    ![Create Http Start function](images/http-start-new-function.PNG "Create Http Start function")
-
-9. The Http Starter function comes with autogenerted code that extracts any objects sent in the payload, starts new orchestration and returns the standard set of endpoints for managing and checking the status of the orchestration 
-
-    ![Http Start code](images/http-start-code.PNG "Http Start code")
-
-10. Next, let's create an activity function
-
-    ![Create activity function](images/create-activity-function-details-screen.PNG "Create activity function")
-
-11. Pick the activity function option
-
-    ![Select activity function](images/activity.PNG "Select activity function")
-
-12. Let's name it `Hello`
-
-    ![Select activity function](images/create-activity-function-main-screen.PNG "Select activity function")
-
-13. The autogenerated code is very simple and just appends `Hello` to the name parameter 
-
-    ![Activity code](images/activity-code.PNG "Activity code")
-
-14. The last function we need is the orchestrator. Start by adding new function under the function app
-
-    ![Create orchestrator function](images/create-orchestrator-function-details-screen.PNG "Create orchestrator function")
-
-15. Select the Orchestrator type function
-
-    ![Orchestrator](images/orchestrator.PNG "Orchestrator")
-
-16. Let's name it `Orchestrator`
-
-    ![Orchestrator Creation Screen](images/create-orchestrator-main-screen.PNG "Orchestrator Creation Screen")
-
-17. The autogenerated code calls three time `Hello` activity function with different parameters 
-
-    ![Orchestrator Code](images/orchestrator-code.PNG "Orchestrator Code")
-
-### Test Durable Functions
-
-In this section we will test our first Durable Function in the Azure Portal
-
-1. Select the `HttpStart` funciton under the function app. Then click on `Test` section and provide `Orchestrator` for function name. Finally click the Run button at the bottom
-
-    ![Test Durable Function](images/test-orchestrator.PNG "Test Durable Function")
-
-2. The output is an JSON object. Use the `statusQueryGetUri` to find the Durable Function output
-
-    ![JSON output](images/testing-response-links.PNG "JSON output")
-
-3. Open the link and you will get the orchestration output
-
-    ![Orchestrator JSON output](images/actual-response-json.PNG "Orchestrator JSON output")
-
-
-Congratulations! You have just created your first Durable Function and you successfully run your first orchestration! 
-
-### References 
+### 参考 
 
 [Durable Functions Documentation](https://docs.microsoft.com/en-us/azure/azure-functions/durable-functions-overview)
 
