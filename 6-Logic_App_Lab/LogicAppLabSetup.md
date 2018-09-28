@@ -44,7 +44,7 @@
 
     ![Build Template](images/template_save.png "Build Template")
 
-1. パラメーターを指定。前のラボで作成した情報を再利用。Cosmos DB のキーやデータベース情報などは既存リソースの情報を参照。名前が異なる場合があるので注意。
+1. パラメーターを指定。前のラボで作成した情報を再利用。Cosmos DB のキーやデータベース情報などは既存リソースの情報を参照。名前が異なる場合があるので注意。また API Management はユニークな名前を指定。
 
     ![Build Template](images/template_settings.png "Build Template")
 
