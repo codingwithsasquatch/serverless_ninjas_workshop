@@ -7,7 +7,9 @@ This must be completed before giving demo.
 
 1. Click Deploy to Azure button below.
 
-[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/deployment.json)
+[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/
+      https://github.com/serverless_ninjas_workshop/5-Logic_App_Overview/Logic_App_Demo/2-Simple_Demo/deployment.json
+    )
 
 1. Fill in the values, giving the resource group a name and location, and prefix name for the resource that will be created in it.  1. Select the terms and agreement check box.
 
