@@ -3,15 +3,9 @@
 Setup:  Create Azure Storage Account, CosmosDB, Azure Search
 This must be completed before giving demo.
 
-## Update Deployment template
-
-1. Open the [deployment.json](deployment.json) file in an editor.
-
-1. Save the deployment.json file to a local folder directory.
-
 ## Use template to create Storage, Cosmos DB, and Azure Function
 
-1. Click Deploy to Azure button
+1. Click Deploy to Azure button below.
 
 [![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/deployment.json)
 
