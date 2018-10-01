@@ -1,5 +1,3 @@
-<b> As of 9/28/2018 this section is still a work in progress.  While working, the deployment script needs to be updated to install the convert_attributes_function</b>
-
 # Serverless Logic Apps Demo Setup
 
 Setup:  Create Azure Storage Account, CosmosDB, Azure Search
@@ -13,39 +11,9 @@ This must be completed before giving demo.
 
 ## Use template to create Storage, Cosmos DB, and Azure Function
 
-1. Browse to the azure portal [https://portal.azure.com](https://portal.azure.com)
+1. Click Deploy to Azure button
 
-1. Click the Create a resource button
-
-    ![Create a resource](../images/new_button.png "Create a resource")
-
-1. Type "template" into the search box and select Logic App when it pops up
-
-    ![Template](../images/template_search.png "Template")
-
-1. On the next blade select Template Deployment
-
-    ![Template Deployment](../images/template_deployment_results.png "Template Deployment")
-
-1. Then click "Create"
-
-    ![Create](../images/create.png "Create")
-
-1. Select "Build your own template in the editor"
-
-    ![Build Template](../images/template_build.png "Build Template")
-
-1. Click "Load file"
-
-    ![Build Template](../images/template_load_file.png "Build Template")
-
-1. Open the [deployoment.json](deployment.json) file.
-
-    ![Build Template](../images/template_json.png "Build Template")
-
-1. Press Save.
-
-    ![Build Template](../images/template_save.png "Build Template")
+[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/deployment.json)
 
 1. Fill in the values, giving the resource group a name and location, and prefix name for the resource that will be created in it.  1. Select the terms and agreement check box.
 
@@ -94,29 +62,5 @@ Now that we have an storage account let's create an instance of CosmosDB where t
 1. In the blade on the right hand side, give the database a name, the collection a name, and ensure that storage capacity is set to fixed.  Then press "OK".
 
     ![Add Collection](../images/new_collection.png "Add Collection")
-
-## Create Function
-
-1. We need to create the function in the function app.  Browse to your resource group and open the App Service resource.
-
-1. Create a new function by clicking on the plus sign next to the functions section on the left
-
-    ![New Function](../images/new_function.png "New Function")
-
-1. Then click the link that says "Create your own function".
-
-    ![Create HTTP Function](../images/create_your_own_function.png "Create HTTP Function")
-
-1. Select the C# value in the HTTP Trigger tile.
-
-    ![Create HTTP Function](../images/function_http_trigger.png "Create HTTP Function")
-
-1. The the HTTP Trigger blade, enter a name for the funtion and press Create.
-
-    ![Create HTTP Function](../images/function_properties.png "Create HTTP Function")
-
-1. Copy the code from [attributemapfunction.txt](setup_data/attributemapfunction.txt) into the run.csx editor.  Press Save.
-
-    ![Add Function Code](../images/function_code.png "Add Function Code")
 
 The setup steps are now complete.
